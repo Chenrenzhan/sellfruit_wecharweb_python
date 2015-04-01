@@ -93,6 +93,5 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 TEMPLATE_DIRS = (
-    '/var/www/site/mycitsm/mycitsm/templates',
-    '/var/www/site/mycitsm/sqlreview/templates',
+    os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
 )
