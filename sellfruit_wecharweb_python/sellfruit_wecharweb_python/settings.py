@@ -39,6 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+     #'django.contrib.comments'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -93,5 +94,23 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
+    #os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
+    'sellfruit/templates',
 )
+
+STATICFILES_DIRS = (
+    os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
+)
+
+#加入：
+HERE = os.path.dirname(os.path.dirname(__file__))
+#修改：
+MEDIA_ROOT = os.path.join( HERE ,'media').replace('\\','/')
+MEDIA_URL = '/media/'
+STATIC_ROOT = os.path.join(HERE,'static').replace('\\','/')
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+   os.path.join(HERE,'sellfruit/templates/static/').replace('\\','/'),
+)
+#推荐的做法是将静态文件保存在app下的static目录中。

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="微信">
+
+<!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+            
+<!-- Mobile Devices Support @end -->
+	
+        {% load staticfiles %}
+		<link rel="stylesheet" href="{% static "css/index.css" %}">
+	
+		<title>评论</title>
+		
+		<style type="text/css">
+			
+			.item{
+				border-bottom:none;
+			}
+			
+			.commentDiv{
+				clear:both;
+				padding-top:10px;
+			}
+			.comment{
+				float:left;
+				width:100px;
+				margin: 0 10px;
+			}
+			
+			.toComment{
+				//float:left;
+				//width:62%;
+				//text-align:right;
+				//margin-left:80px;
+			}
+			
+			.userCommentDiv{
+				text-align:left;
+				overflow:hidden;
+				background:white;
+				padding-top:10px;
+				border-top:1px solid gray;
+			}
+			.userComment{
+				//float:left;
+				width;100%;
+				clear:both;
+			}
+			.userDiv{
+				//float:left;
+				//width:40%;
+			}
+			.user{
+				//vertical-align:middle;
+				margin-left:10px;
+			}
+			
+			textarea{
+				width:90%;
+				margin:5px 10px 0px 10px;
+				resize: none;
+				readonly:readonly;
+			}
+			
+			.comm{
+				width:90%;
+				margin:5px 10px 0px 10px;
+				resize: none;
+				readonly:readonly;
+			}
+			
+			.moreCommentDiv{
+				padding-bottom:20px;
+				padding-top:10px;
+			}
+			
+			.moreComment{
+				width:70%;
+				height:30px;
+			}
+			
+		</style>
+		
+	</head>
+	
+	<body>
+	<center>
+		<div class="header">
+			<h1>果果团</h1>
+		</div>
+
+        <!--
+		<div class="menuDiv">
+			<table>
+				<tr>
+					<td class="menu" id="username" width="50%"><a href="login.html">您还没登录,请登录</a></td>
+					<td class="menu" id="orderManage" width="50%"><a href="orderManage.html">订单管理</a></td>
+				</tr>
+			</table>
+		</div>
+	    -->
+	
+		<div class="item">
+			<div class="itemPic">
+				<img src="{% static "image/apple.jpg" %}" alt="苹果"/>
+			</div>
+			<div class="itemContext">
+				<div class="itemTitle">
+					<h2>陕西红苹果</h2>
+					<span class="price" id="applePrice">团购价:<b>6.5</b>斤</span>
+					<span class="sum" style="margin:0 0 0 20px"><input id="appleSum" type="text" size="3px"/>个</span>
+					<hr>
+				</div>
+				<div class="itemInf">
+					<span class="buy" id="appleBuySum" style="float:left;">已有100人团购</span>
+					<span class="buy" style="float:right;"><a href="#" id="appleBuy">立即抢购</a></span>
+					
+				</div>
+			</div>	
+			<div class="commentDiv">
+				<span class="comment" id="applComment">评论:(100)条</span>
+				<span class="toComment"><a href="myComment.html" id="appleToComment">我要评论</a></span>
+				
+			</div>
+			<hr style="clear:both;padding-left:0px;">
+		</div>
+		
+		<div class="userCommentDiv">
+			<div class="userDiv">
+				<!--<span class="user">用户名：我爱罗</span>-->
+				<span class="user">购买时间：2015/3/13</span>
+			</div>
+			<div class="userComment">
+				<textarea readonly="readonly">苹果很好吃！好评！</textarea>
+			</div>	
+			
+			<hr>
+			
+			<div class="userDiv">
+				<!--<span class="user">用户名：我爱罗</span>-->
+				<span class="user">购买时间：2015/3/13</span>
+			</div>
+			<div class="userComment">
+				<textarea  readonly="readonly">苹果很好吃！好评！</textarea>
+			</div>	
+			
+			<hr>
+			
+			<div class="userDiv">
+				<!--<span class="user">用户名：我爱罗</span>-->
+				<span class="user">购买时间：2015/3/13</span>
+			</div>
+			<div class="userComment">
+				<textarea  readonly="readonly">苹果很好吃！好评！</textarea>
+			</div>	
+			
+			<hr>
+		</div>
+		
+		
+		<div class="moreCommentDiv" >
+			<button class="moreComment" id="moreComment">下拉加载更多评论</button>
+		</div>
+		
+			
+	</center>
+	</body>
+</html>

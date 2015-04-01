@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="微信">
+
+<!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+            
+<!-- Mobile Devices Support @end -->
+	
+        {% load staticfiles %}
+		<link rel="stylesheet" href="{% static "css/index.css" %}">
+	
+		<title>果果团</title>
+	</head>
+	
+	<body>
+	<center>
+		<div class="header">
+			<h1>果果团</h1>
+		</div>
+
+        <!--
+		<div class="menuDiv">
+			<table>
+				<tr>
+					<td class="menu" id="username" width="50%"><a href="login.html">您还没登录,请登录</a></td>
+					<td class="menu" id="orderManage" width="50%"><a href="orderManage.html">订单管理</a></td>
+				</tr>
+			</table>
+		</div>
+	    -->
+	
+		<div class="item">
+			<div class="itemPic">
+				<img src="{%  static "image/apple.jpg" %}"  alt="苹果"/>
+			</div>
+			<div class="itemContext">
+				<div class="itemTitle">
+					<h2>陕西红苹果</h2>
+					<span class="price" id="applePrice">团购价:<b>6.5</b>斤</span>
+					<span class="sum" style="margin:0 0 0 20px"><input id="appleSum" type="text" size="3px"/>个</span>
+					<hr>
+				</div>
+				<div class="itemInf">
+					<span class="comment" id="appleComment" style="float:left;">评论:<a href="#" id="itemComment">(10)条</a></span>
+					<span class="number" id="appleNumber" style="float:right;">已售:(<b>10</b>)</span>
+					
+				</div>	
+			</div>		
+		</div>
+		
+		
+		<div class="item">
+			<div class="itemPic">
+				<img src="{%  static "image/banana.jpg" %}" alt="香蕉"/>
+			</div>
+			<div class="itemContext">
+				<div class="itemTitle">
+					<h2>香蕉</h2>
+					<span class="price" id="bananaPrice">团购价:<b>4.0</b>斤</span>
+					<span class="sum" style="margin:0 0 0 20px"><input id="bananaSum" type="text" size="3px"/>个</span>
+					<hr>
+				</div>
+				<div class="itemInf">
+					<span class="comment" id="bananaComment" style="float:left;">评论:<a href="#">(10)条</a></span>
+					<span class="number" id="bananaNumber" style="float:right;">已售:(<b>10</b>)</span>
+					
+				</div>	
+			</div>		
+		</div>
+	
+	
+		<div class="item">
+			<div class="itemPic">
+				<img src="{%  static "image/pear.jpg" %}" alt="雪梨"/>
+			</div>
+			<div class="itemContext">
+				<div class="itemTitle">
+					<h2>雪梨</h2>
+					<span class="price" id="pearPrice">团购价:<b>5.5</b>斤</span>
+					<span class="sum" style="margin:0 0 0 20px"><input id="pearSum" type="text" size="3px"/>个</span>
+					<hr>
+				</div>
+				<div class="itemInf">
+					<span class="comment" id="pearComment" style="float:left;">评论:<a href="#">(10)条</a></span>
+					<span class="number" id="pearNumber" style="float:right;">已售:(<b>10</b>)</span>
+					
+				</div>	
+			</div>		
+		</div>
+		
+		
+		<div class="item">
+			<div class="itemPic">
+				<img src="{%  static "image/lemon.jpg" %}" alt="柠檬"/>
+			</div>
+			<div class="itemContext">
+				<div class="itemTitle">
+					<h2>柠檬</h2>
+					<span class="price" id="lemonPrice">团购价:<b>4.5</b>两个</span>
+					<span class="sum" style="margin:0 0 0 20px"><input id="lemonSum" type="text" size="3px"/>个</span>
+					<hr>
+				</div>
+				<div class="itemInf">
+					<span class="comment" id="lemonComment" style="float:left;">评论:<a href="#">(10)条</a></span>
+					<span class="number" id="lemnoNumber" style="float:right;">已售:(<b>10</b>)</span>
+					
+				</div>	
+			</div>		
+		</div>
+		
+		
+		<div class="submitDiv">
+			<button class="submit" id="sbmit">提交</button>
+		</div>
+		
+			
+	</center>
+	</body>
+</html>

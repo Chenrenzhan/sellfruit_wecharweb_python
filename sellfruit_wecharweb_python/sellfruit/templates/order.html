@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="微信">
+
+<!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+            
+<!-- Mobile Devices Support @end -->
+	    {% load staticfiles %}
+		<link rel="stylesheet" href="{% static "css/order.css" %}">
+	
+		<title>订单</title>
+		
+	</head>
+	
+	<body>
+	
+		<div class="header">
+			<h3>订单编号 <span id="orderId">001</span></h3>	
+		</div>
+		
+		<div class="body" style="margin-bottom:90px;">
+			 <div class="itemDiv">
+				<div class="item">
+					<span class="fruitName">陕西红苹果</span>
+					<span class="sum" id="appleSum">2个</span>					
+				</div>
+				<div class="item">
+					<span class="fruitName">香蕉</span>
+					<span class="sum" id="bananaSum">2个</span>					
+				</div>
+				<div class="item">
+					<span class="fruitName">雪梨</span>
+					<span class="sum" id="pearSum">2个</span>					
+				</div>
+				<div class="item">
+					<span class="fruitName">柠檬</span>
+					<span class="sum" id="lemonSum">2个</span>					
+				</div>			 
+			 </div>
+			 
+			 <div>
+				<form class="radioForm">
+					<div class="delivery" id="33">
+						<div class="delWay">
+							<input type="radio" id="self" name="del"checked="checked" />自提
+						</div>
+						<div class="delAddr">
+							<span class="delSpan">
+								请于**月**日12:30-13:30到饭堂一楼小卖部方向处自提
+							</span>
+						</div>
+					</div>
+					<div class="delivery" style="clear:both;border-top:10px;" >
+						<div class="delWay">
+							<input type="radio" name="del" id="sendToDorm" />送到宿舍
+						</div>
+						<div class="delAddr">
+							<span class="delSpan">
+								预计**月**日13:00-13:30送达宿舍(2元运费)
+							</span>
+						</div>
+						<div class="dormNo" >
+							<p class="inputP">宿舍号：<input type="text" class="inputText" id="dormNo" /> </p>
+						</div>
+					</div>
+				</form>
+			 </div>	
+
+			<div class="telephone">
+				<p class="inputP">手机号：<input type="tel" class="inputText" id="telephone" /> </p>
+			</div>
+			<hr color="black">
+			<center>
+			<div class="btnDiv" >
+				<button class="btn" id="ok">确认</button>
+				<button class="btn" id="cancel">取消</button>
+			</div>
+			</center>
+			
+		</div>
+		
+		
+		
+		
+	</body>
+</html>
+	
