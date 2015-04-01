@@ -100,4 +100,7 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
+#myignore
 *.xml
+*.sqlite3
+.idea/*
