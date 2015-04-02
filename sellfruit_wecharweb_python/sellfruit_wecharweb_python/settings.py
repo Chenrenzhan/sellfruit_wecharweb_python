@@ -39,7 +39,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-     #'django.contrib.comments'
+     'sellfruit',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -62,9 +62,13 @@ WSGI_APPLICATION = 'sellfruit_wecharweb_python.wsgi.application'
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+     'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'fruitdb',
+        'USER':'root',
+        'PASSWORD': 'crz332066279',
+        'HOST': 'localhost',
+        'PORT': '3306',
     }
 }
 
