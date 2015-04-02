@@ -64,7 +64,7 @@ WSGI_APPLICATION = 'sellfruit_wecharweb_python.wsgi.application'
 DATABASES = {
      'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'fruitdb',
+        'NAME': 'fruit',
         'USER':'root',
         'PASSWORD': 'crz332066279',
         'HOST': 'localhost',
