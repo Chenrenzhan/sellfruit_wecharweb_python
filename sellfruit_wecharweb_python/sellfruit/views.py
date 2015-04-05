@@ -114,13 +114,33 @@ def comment(request, url):
     path = request.path
     if(path == '/comment/apple/'):
         validate = {'fruit':apple[0], 'comment': apple}
+        request.session['fruitType'] = 1
     elif(path == '/comment/banana/'):
         validate = {'fruit':banana[0], 'comment': banana}
+        request.session['fruitType'] = 2
     elif(path == '/comment/pear/'):
         validate = {'fruit':pear[0], 'comment': pear}
+        request.session['fruitType'] = 3
     elif(path == '/comment/lemon/'):
         validate = {'fruit':lemon[0], 'comment': lemon}
+        request.session['fruitType'] = 4
+
     return render_to_response('comment.html', validate)
 
 def toComment(request):
+    fruitType = int(request.session['fruitType'])
+    fruits = ['apple', 'banana', 'pear', 'lemon']
+    path = '/comment/' + fruits[fruitType-1]
+
+    fruit = Fruit.objects.get(fruitType=fruitType)
+
+    if 'comment' in request.GET and request.GET['comment']:
+        comment = request.GET['comment']
+        fruit.commentSum += 1
+        fruit.save()
+        flag = Comment.objects.create(fruit = fruit, comment = comment, time = datetime.now())
+        if(flag):
+            return HttpResponseRedirect(path)
+
+
     return render_to_response('myComment.html')

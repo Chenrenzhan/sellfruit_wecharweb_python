@@ -49,7 +49,7 @@ class Comment(models.Model):
     comment = models.TextField() #评论
     time = models.DateTimeField(auto_now=True, auto_now_add=False) #评论时间
     class Meta:
-        ordering=['time']
+        ordering=['-time']
 
     def formatTime(self):
         return self.time.strftime('%Y-%m-%d %H:%M:%S')

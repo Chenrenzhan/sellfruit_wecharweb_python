@@ -52,14 +52,32 @@
 		<div class="header">
 			<h1>我的评论</h1>
 		</div>
-
-		<div class="comment">
-			<textarea class="commentText"> </textarea>
-		</div>
-		<div class="btnDiv" >
-			<button class="btn" id="ok">确认</button>
-			<button class="btn" id="cancel">取消</button>
-		</div>
+        <form action="" method="get">
+            <div class="comment">
+                <textarea class="commentText" name="comment" id="comment"> </textarea>
+            </div>
+            <div class="btnDiv" >
+                <input type="submit" value="确定" class="btn" id="ok"/>
+                <input type="submit" value="取消" class="btn" id="cancel"/>
+            </div>
+        </form>
 	</center>
+
+    <script type="text/javascript">
+        document.getElementById("ok").onclick = function(e)
+        {
+            if(document.getElementById("comment").value != "")
+                alert("评论成功！");
+            else
+                alert("您还没评论！")
+        }
+        document.getElementById("cancel").onclick = function(e)
+        {
+            window.location.href='http://127.0.0.1:8000/tocomment/';
+
+        }
+
+    </script>
+
 	</body>
 </html>
