@@ -111,28 +111,30 @@
 	    -->
 	
 		<div class="item">
+        <a href="http://127.0.0.1:8000/index/" >
 			<div class="itemPic">
-				<img src="{{ fruit.fruit.picture }}"  alt="{{ fruit.fruit.fruitName }}"/>
+				<img src="{{ fruit.picture }}"  alt="{{ fruit.fruitName }}"/>
 			</div>
+        </a>
 			<div class="itemContext">
 				<div class="itemTitle">
-					<h2>{{ fruit.fruit.fruitName }}</h2>
-					<span class="price" id="applePrice">团购价:<b>{{ fruit.fruit.price }}</b>斤</span>
+					<a href="http://127.0.0.1:8000/index/"><h2>{{ fruit.fruitName }}</h2></a>
+					<span class="price" id="applePrice">团购价:<b>{{ fruit.price }}</b>斤</span>
 					<span class="sum" style="margin:0 0 0 20px"><input id="appleSum" type="text" size="3px"/>
-                        {% if fruit.fruit.measurement %}个
+                        {% if fruit.measurement %}个
                         {% else %}斤
                         {% endif %}
                     </span>
 					<hr>
 				</div>
 				<div class="itemInf">
-					<span class="buy" id="appleBuySum" style="float:left;">已有{{ fruit.fruit.amount }}人团购</span>
-					<span class="buy" style="float:right;"><a href="index.html" id="appleBuy">立即抢购</a></span>
+					<span class="buy" id="appleBuySum" style="float:left;">已有{{ fruit.amount }}人团购</span>
+					<span class="buy" style="float:right;"><a href="http://127.0.0.1:8000/index/">立即抢购</a></span>
 					
 				</div>
 			</div>	
 			<div class="commentDiv">
-				<span class="comment" id="applComment">评论:({{ fruit.fruit.commentSum }})条</span>
+				<span class="comment" id="applComment">评论:({{ fruit.commentSum }})条</span>
 				<span class="toComment"><a href="http://127.0.0.1:8000/tocomment/" id="appleToComment">我要评论</a></span>
 				
 			</div>

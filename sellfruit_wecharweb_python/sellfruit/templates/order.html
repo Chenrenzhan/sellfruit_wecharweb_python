@@ -28,7 +28,7 @@
 			<h3>订单编号 <span id="orderId">{{ fruits.orderNo }}</span></h3>
 		</div>
 
-        <form name="orderForm" action="" method="get">
+        <form name="orderForm" action="" method="get" onSubmit="return check();">
 		<div class="body" style="margin-bottom:90px;">
             {% for fruit in fruits.fruits %}
 
@@ -78,23 +78,14 @@
 			<hr color="black">
 			<center>
 			<div class="btnDiv" >
-				<input type="submit" value="确定" class="btn" id="ok"/>
-				<input type="submit" value="取消" class="btn" id="cancel"/>
+				<input type="submit" name="submit" value="确定" class="btn" id="ok"/>
+				<input type="submit" name="submit" value="取消" class="btn" id="cancel"/>
 			</div>
 			</center>
 
 		</div>
 		</form>
     <script type="text/javascript">
-        document.getElementById("ok").onclick = function(e)
-        {
-            alert("水果订购成功！");
-        }
-        document.getElementById("cancel").onclick = function(e)
-        {
-            window.location.href='http://127.0.0.1:8000/index/';
-
-        }
         document.getElementById("telephone").onchange = function(e)
         {
             if(document.getElementById("telephone").value == "")
@@ -102,6 +93,33 @@
             else if(document.getElementById("telephone").value.length != 11)
                 alert("亲，电话不对哦！")
         }
+
+        function check()
+        {
+            var radio = document.getElementsByName("del");
+            if(radio[1].checked)
+            {
+                var dorm = document.getElementById("dormNo");
+                if(dorm.value.length != 4) {
+                    alert("请输入正确的宿舍号！");
+                    return false;
+                }
+
+            }
+            if(document.getElementById("telephone").value == "") {
+                alert("亲，您还没写电话呢！");
+                return false;
+            }
+            else if(document.getElementById("telephone").value.length != 11) {
+                alert("亲，电话不对哦！");
+                return false;
+            }
+            else {
+                alert("水果订购成功！");
+                return true;
+            }
+        }
+
     </script>
 
 	</body>
