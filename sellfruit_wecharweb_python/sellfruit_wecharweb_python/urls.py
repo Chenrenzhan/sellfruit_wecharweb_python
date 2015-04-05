@@ -15,4 +15,5 @@ urlpatterns = [
     url(r'^index/$',index),
     url(r'^order/$',order),
     url(r'^comment/$',comment),
+    url(r'^tocomment/$',toComment),
 ]

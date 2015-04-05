@@ -25,34 +25,30 @@
 	<body>
 	
 		<div class="header">
-			<h3>订单编号 <span id="orderId">001</span></h3>	
+			<h3>订单编号 <span id="orderId">{{ fruits.orderNo }}</span></h3>
 		</div>
-		
+
+        <form name="orderForm" action="" method="get">
 		<div class="body" style="margin-bottom:90px;">
-			 <div class="itemDiv">
-				<div class="item">
-					<span class="fruitName">陕西红苹果</span>
-					<span class="sum" id="appleSum">2个</span>					
-				</div>
-				<div class="item">
-					<span class="fruitName">香蕉</span>
-					<span class="sum" id="bananaSum">2个</span>					
-				</div>
-				<div class="item">
-					<span class="fruitName">雪梨</span>
-					<span class="sum" id="pearSum">2个</span>					
-				</div>
-				<div class="item">
-					<span class="fruitName">柠檬</span>
-					<span class="sum" id="lemonSum">2个</span>					
-				</div>			 
-			 </div>
+            {% for fruit in fruits.fruits %}
+
+                <div class="itemDiv">
+                    <div class="item">
+                        <span class="fruitName">{{ fruit.name }}</span>
+                        <span class="sum" id="appleSum">{{ fruit.sum }}
+                            {% if fruit.measurement %}个
+                            {% else %}斤
+                            {% endif %}
+                        </span>
+				    </div>
+                </div>
+            {% endfor %}
 			 
 			 <div>
-				<form class="radioForm">
+
 					<div class="delivery" id="33">
 						<div class="delWay">
-							<input type="radio" id="self" name="del"checked="checked" />自提
+							<input type="radio" id="self" name="del"checked="checked" value="True"/>自提
 						</div>
 						<div class="delAddr">
 							<span class="delSpan">
@@ -62,7 +58,7 @@
 					</div>
 					<div class="delivery" style="clear:both;border-top:10px;" >
 						<div class="delWay">
-							<input type="radio" name="del" id="sendToDorm" />送到宿舍
+							<input type="radio" name="del" id="sendToDorm" value="False"/>送到宿舍
 						</div>
 						<div class="delAddr">
 							<span class="delSpan">
@@ -70,28 +66,37 @@
 							</span>
 						</div>
 						<div class="dormNo" >
-							<p class="inputP">宿舍号：<input type="text" class="inputText" id="dormNo" /> </p>
+							<p class="inputP">宿舍号：<input type="text" name="dorm" class="inputText" id="dormNo" /> </p>
 						</div>
 					</div>
-				</form>
+
 			 </div>	
 
 			<div class="telephone">
-				<p class="inputP">手机号：<input type="tel" class="inputText" id="telephone" /> </p>
+				<p class="inputP">手机号：<input type="tel" name="phone" class="inputText" id="telephone" /> </p>
 			</div>
 			<hr color="black">
 			<center>
 			<div class="btnDiv" >
-				<button class="btn" id="ok">确认</button>
-				<button class="btn" id="cancel">取消</button>
+				<input type="submit" value="确定" class="btn" id="ok"/>
+				<input type="submit" value="取消" class="btn" id="cancel"/>
 			</div>
 			</center>
-			
+
 		</div>
-		
-		
-		
-		
+		</form>
+    <script type="text/javascript">
+        document.getElementById("ok").onclick = function(e)
+        {
+            alert("水果订购成功！");
+        }
+        document.getElementById("cancel").onclick = function(e)
+        {
+            window.location.href='http://127.0.0.1:8000/index/';
+
+        }
+    </script>
+
 	</body>
 </html>
 	

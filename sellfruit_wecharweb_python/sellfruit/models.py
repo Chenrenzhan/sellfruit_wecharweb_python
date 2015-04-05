@@ -16,8 +16,12 @@ class Order(models.Model):
     allmoney = models.FloatField(null=True) #总金额
     delivery = models.BooleanField(default=True) #配送方式，true-自取，false-送到宿舍
     state = models.BooleanField(default=False) #状态，true-已经配送，false-还没配送
+    phone = models.CharField(max_length=11) #手机号码
+    dorm = models.CharField(max_length=4) #宿舍号
     remarks = models.TextField(blank=True) #备注
     time = models.DateTimeField(auto_now=True, auto_now_add=False) #生成订单的时间
+    class Meta:
+        ordering=['time']
 
 #水果价格
 class Fruit(models.Model):
@@ -27,7 +31,7 @@ class Fruit(models.Model):
     measurement = models.BooleanField(default=True) #measurement-称量方式，true-以“个”算，false-以“斤”算
     commentSum = models.IntegerField() #评论总数
     amount = models.IntegerField() #总售量
-    # picture = models.ImageField() #图片
+    picture = models.URLField() #图片
 
 #用户信息
 # class User(models.Model):
