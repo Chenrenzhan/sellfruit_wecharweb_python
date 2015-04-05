@@ -42,12 +42,16 @@
             {% for fruit in fruits %}
 
                 <div class="item">
+                <a href="{{ fruit.comment }}">
                     <div class="itemPic">
-                        <img src="{{ fruit.list.picture }}"  alt="苹果"/>
+                        <img src="{{ fruit.list.picture }}"  alt="{{ fruit.list.fruitName }}"/>
                     </div>
+                </a>
                     <div class="itemContext">
                         <div class="itemTitle">
+                        <a href="{{ fruit.comment }}" style="text-decoration: none;">
                             <h2>{{ fruit.list.fruitName }}</h2>
+                        </a>
                             <span class="price" >团购价:<b>{{ fruit.list.price }}</b>斤</span>
                             <span class="sum" style="margin:0 0 0 20px"><input class="fruitSum" name="fruitSum" type="text" size="3px"/>
                                 {% if fruit.list.measurement %}个
@@ -57,12 +61,14 @@
                             <hr>
                         </div>
                         <div class="itemInf">
-                            <span class="comment" id="appleComment" style="float:left;">评论:<a href="#" id="itemComment">({{ fruit.list.commentSum }})条</a></span>
+                            <span class="comment" id="appleComment" style="float:left;">评论:
+                                <a href="{{ fruit.comment }}" id="itemComment">({{ fruit.list.commentSum }})条</a></span>
                             <span class="number" id="appleNumber" style="float:right;">已售:(<b>{{ fruit.list.amount }}</b>)</span>
 
                         </div>
                     </div>
                 </div>
+
             {% endfor %}
 
 <!--

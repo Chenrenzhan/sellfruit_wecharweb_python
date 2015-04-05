@@ -95,6 +95,13 @@
             window.location.href='http://127.0.0.1:8000/index/';
 
         }
+        document.getElementById("telephone").onchange = function(e)
+        {
+            if(document.getElementById("telephone").value == "")
+                alert("亲，您还没写电话呢！");
+            else if(document.getElementById("telephone").value.length != 11)
+                alert("亲，电话不对哦！")
+        }
     </script>
 
 	</body>

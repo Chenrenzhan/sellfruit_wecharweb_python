@@ -23,16 +23,18 @@ def index(request):
     pear = Fruit.objects.get(fruitType=3)
     lemon = Fruit.objects.get(fruitType=4)
     validate = {"fruits": [
-        {"type":"apple","list":apple}, {"type":"banana","list":banana},
-        {"type":"pear","list":pear}, {"type":"lemon","list":lemon}
+        {"type":"apple","list":apple, 'comment': 'http://127.0.0.1:8000/comment/appple/',},
+        {"type":"banana","list":banana, 'comment': 'http://127.0.0.1:8000/comment/banana/'},
+        {"type":"pear","list":pear, 'comment': 'http://127.0.0.1:8000/comment/pear/'},
+        {"type":"lemon","list":lemon, 'comment': 'http://127.0.0.1:8000/comment/lemon/'}
     ], }
+
+    comment = {'apple':apple, 'banana': banana, 'pear': pear, 'lemon': lemon}
+    request.session['comment'] = comment
 
     if 'fruitSum' in request.GET:
         fruitSum =  request.GET.getlist('fruitSum')
-
-
-
-        request.session['fruits'] = fruitSum
+        request.session['fruits'] = fruitSum #把选购水果的数量存到session
         #return HttpResponse(fruits['fruits'][0]['name'])
         return HttpResponseRedirect('/order/')
         # return render_to_response('order.html', {'fruitslist':request.GET.getlist('fruitSum')})
@@ -80,11 +82,14 @@ def order(request):
                                     time = time)
         if(flag):
             #销售重量增加
-            apple.amount += fruits[0]
-            banana.amount += fruits[1]
-            pear.amount += fruits[2]
-            lemon.amount += fruits[3]
-
+            apple.amount += int(fruits[0])
+            apple.save()
+            banana.amount += int(fruits[1])
+            banana.save()
+            pear.amount += int(fruits[2])
+            pear.save()
+            lemon.amount += int(fruits[3])
+            lemon.save()
 
             return HttpResponseRedirect('/index/')
     # else:
@@ -98,8 +103,24 @@ def order(request):
 
     return render_to_response('order.html',{'fruits':rFruits})
 
-def comment(request):
-    return render_to_response('comment.html')
+def comment(request, url):
+    apple = Comment.objects.filter(fruit_id = 1)
+    banana = Comment.objects.filter(fruit_id = 2)
+    pear = Comment.objects.filter(fruit_id = 3)
+    lemon = Comment.objects.filter(fruit_id = 4)
+
+    validate = {'fruit':apple[0], 'comment': apple}
+
+    path = request.path
+    if(path == '/comment/apple/'):
+        validate = {'fruit':apple[0], 'comment': apple}
+    elif(path == '/comment/banana/'):
+        validate = {'fruit':banana[0], 'comment': banana}
+    elif(path == '/comment/pear/'):
+        validate = {'fruit':pear[0], 'comment': pear}
+    elif(path == '/comment/lemon/'):
+        validate = {'fruit':lemon[0], 'comment': lemon}
+    return render_to_response('comment.html', validate)
 
 def toComment(request):
     return render_to_response('myComment.html')

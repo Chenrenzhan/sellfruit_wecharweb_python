@@ -47,9 +47,12 @@ class Comment(models.Model):
     # order = models.ForeignKey(Order) #订单
     fruit = models.ForeignKey(Fruit) #水果
     comment = models.TextField() #评论
-    time = models.DateField(auto_now=True, auto_now_add=False) #评论时间
+    time = models.DateTimeField(auto_now=True, auto_now_add=False) #评论时间
     class Meta:
         ordering=['time']
+
+    def formatTime(self):
+        return self.time.strftime('%Y-%m-%d %H:%M:%S')
 
 # class JSONField(models.TextField):
 #     __metaclass__ = models.SubfieldBase

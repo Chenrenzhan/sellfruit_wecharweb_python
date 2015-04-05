@@ -14,6 +14,6 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^index/$',index),
     url(r'^order/$',order),
-    url(r'^comment/$',comment),
+    url(r'^comment/(\S)+/$',comment),
     url(r'^tocomment/$',toComment),
 ]

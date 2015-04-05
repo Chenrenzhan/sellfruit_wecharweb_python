@@ -112,32 +112,51 @@
 	
 		<div class="item">
 			<div class="itemPic">
-				<img src="{% static "image/apple.jpg" %}" alt="苹果"/>
+				<img src="{{ fruit.fruit.picture }}"  alt="{{ fruit.fruit.fruitName }}"/>
 			</div>
 			<div class="itemContext">
 				<div class="itemTitle">
-					<h2>陕西红苹果</h2>
-					<span class="price" id="applePrice">团购价:<b>6.5</b>斤</span>
-					<span class="sum" style="margin:0 0 0 20px"><input id="appleSum" type="text" size="3px"/>个</span>
+					<h2>{{ fruit.fruit.fruitName }}</h2>
+					<span class="price" id="applePrice">团购价:<b>{{ fruit.fruit.price }}</b>斤</span>
+					<span class="sum" style="margin:0 0 0 20px"><input id="appleSum" type="text" size="3px"/>
+                        {% if fruit.fruit.measurement %}个
+                        {% else %}斤
+                        {% endif %}
+                    </span>
 					<hr>
 				</div>
 				<div class="itemInf">
-					<span class="buy" id="appleBuySum" style="float:left;">已有100人团购</span>
+					<span class="buy" id="appleBuySum" style="float:left;">已有{{ fruit.fruit.amount }}人团购</span>
 					<span class="buy" style="float:right;"><a href="index.html" id="appleBuy">立即抢购</a></span>
 					
 				</div>
 			</div>	
 			<div class="commentDiv">
-				<span class="comment" id="applComment">评论:(100)条</span>
+				<span class="comment" id="applComment">评论:({{ fruit.fruit.commentSum }})条</span>
 				<span class="toComment"><a href="myComment.html" id="appleToComment">我要评论</a></span>
 				
 			</div>
 			<hr style="clear:both;padding-left:0px;">
 		</div>
-		
 		<div class="userCommentDiv">
+        {% for comment in comment %}
+
+            <div class="userDiv">
+                <!--<span class="user">用户名：我爱罗</span>-->
+                <span class="user">{{ comment.formatTime }}</span>
+            </div>
+            <div class="userComment">
+                <textarea readonly="readonly">{{ comment.comment }}</textarea>
+            </div>
+
+			<hr>
+        {% endfor %}
+        </div>
+
+<!--
+        <div class="userCommentDiv">
 			<div class="userDiv">
-				<!--<span class="user">用户名：我爱罗</span>-->
+				--<span class="user">用户名：我爱罗</span>
 				<span class="user">购买时间：2015/3/13</span>
 			</div>
 			<div class="userComment">
@@ -147,7 +166,7 @@
 			<hr>
 			
 			<div class="userDiv">
-				<!--<span class="user">用户名：我爱罗</span>-->
+				<span class="user">用户名：我爱罗</span>
 				<span class="user">购买时间：2015/3/13</span>
 			</div>
 			<div class="userComment">
@@ -157,7 +176,7 @@
 			<hr>
 			
 			<div class="userDiv">
-				<!--<span class="user">用户名：我爱罗</span>-->
+				<span class="user">用户名：我爱罗</span>
 				<span class="user">购买时间：2015/3/13</span>
 			</div>
 			<div class="userComment">
@@ -171,7 +190,7 @@
 		<div class="moreCommentDiv" >
 			<button class="moreComment" id="moreComment">下拉加载更多评论</button>
 		</div>
-		
+-->
 			
 	</center>
 	</body>
