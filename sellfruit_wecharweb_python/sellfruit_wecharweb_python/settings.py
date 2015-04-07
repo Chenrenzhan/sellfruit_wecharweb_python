@@ -89,6 +89,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static')
 
 STATIC_URL = '/static/'
 
@@ -99,23 +100,25 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 TEMPLATE_DIRS = (
-    #os.path.join(os.path.dirname(__file__), 'templates').replace('\\','/'),
-    'sellfruit/templates',
+    ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
+    ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
+    ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
+    #('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
 )
 
-STATICFILES_DIRS = (
-    os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
-)
-
-#加入：
-HERE = os.path.dirname(os.path.dirname(__file__))
-#修改：
-MEDIA_ROOT = os.path.join( HERE ,'media').replace('\\','/')
-MEDIA_URL = '/media/'
-STATIC_ROOT = os.path.join(HERE,'static').replace('\\','/')
-STATIC_URL = '/static/'
-
-STATICFILES_DIRS = (
-   os.path.join(HERE,'sellfruit/templates/static/').replace('\\','/'),
-)
-#推荐的做法是将静态文件保存在app下的static目录中。
+# STATICFILES_DIRS = (
+#     os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
+# )
+#
+# #加入：
+# HERE = os.path.dirname(os.path.dirname(__file__))
+# #修改：
+# MEDIA_ROOT = os.path.join( HERE ,'media').replace('\\','/')
+# MEDIA_URL = '/media/'
+# STATIC_ROOT = os.path.join(HERE,'static').replace('\\','/')
+# STATIC_URL = '/static/'
+#
+# STATICFILES_DIRS = (
+#    os.path.join(HERE,'sellfruit/templates/static/').replace('\\','/'),
+# )
+# #推荐的做法是将静态文件保存在app下的static目录中。

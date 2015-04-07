@@ -23,6 +23,12 @@ class Order(models.Model):
     class Meta:
         ordering=['time']
 
+    class Admin:
+        list_display = ('oderNo', 'allup', 'phone', 'dorm', 'delivery', 'time')
+        #list_filter = ('orderNo', 'publication_date')
+        ordering = ('-time',)
+        search_fields = ('orderNo',)
+
 #水果价格
 class Fruit(models.Model):
     fruitType = models.PositiveSmallIntegerField(primary_key=True) #水果类型，1-苹果，2-香蕉，3-雪梨，4-柠檬
