@@ -38,7 +38,7 @@ INSTALLED_APPS = (
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     # 'django.contrib.messages',
-    # 'django.contrib.staticfiles',
+     'django.contrib.staticfiles',
      'sellfruit',
 )
 
@@ -89,7 +89,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), 'static')
+STATIC_ROOT = os.path.join(os.path.dirname(__file__), '../static')
 
 STATIC_URL = '/static/'
 
@@ -100,9 +100,11 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.app_directories.Loader',
 )
 TEMPLATE_DIRS = (
+    os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
     ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
     ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
     ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
+
     #('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
 )
 

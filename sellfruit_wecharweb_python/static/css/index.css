@@ -1,12 +1,14 @@
-			html, body{
-				width:100%;margin: 0;
-				padding: 0;
-				border: 0;
-				font-size: 100%;
-				font: inherit;
-				vertical-align: baseline;
-			}
-			//body{background:RGB(255,255,204);}
+			html, body {
+                width: 100%;
+                margin: 0;
+                padding: 0;
+                border: 0;
+                font-size: 100%;
+                font: inherit;
+                vertical-align: baseline;
+
+            }
+
 			
 			.header h1{color:blue;}
 			
