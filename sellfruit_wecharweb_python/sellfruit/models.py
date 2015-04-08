@@ -11,8 +11,15 @@ import json
 class Order(models.Model):
     orderNo = models.CharField(primary_key=True, max_length=7) #订单编号，由日期和三位编号组成，如0402005
     # user = models.FreignKey(User) #用户信息
-    allup = models.TextField() #总的水果数量，把各种水果的量和价格构建成json对象，如：{“apple":{"price":"2.5","amount":"3","measurement":"0"},"banana":....}
-    #price-单价；amount-数量；measurement-称量方式，1-以“个”算，0-以“斤”算
+    allup = models.TextField()
+    """
+    总的水果数量，把各种水果的量和价格构建成json对象，如：
+            {'allup': [
+                     {'type':'apple',
+                        'list':{"price":6.5,"amount":4,"measurement":0}},
+                     ]}
+    price-单价；amount-数量；measurement-称量方式，1-以“个”算，0-以“斤”算
+    """
     allmoney = models.FloatField(null=True) #总金额
     delivery = models.BooleanField(default=True) #配送方式，true-自取，false-送到宿舍
     state = models.BooleanField(default=False) #状态，true-已经配送，false-还没配送

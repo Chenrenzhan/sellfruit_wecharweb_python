@@ -5,6 +5,7 @@
 from django.conf.urls import include, url
 from django.contrib import admin
 from sellfruit.views import *
+from sellfruit.manage import orderForm
 
 urlpatterns = [
     # Examples:
@@ -16,4 +17,5 @@ urlpatterns = [
     url(r'^order/$',order),
     url(r'^comment/(\S)+/$',comment),
     url(r'^tocomment/$',toComment),
+    url(r'^manage/$', orderForm)
 ]
