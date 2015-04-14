@@ -103,10 +103,10 @@ def order(request):
     # else:
     #     return HttpResponse('not phone')
     rFruits={'orderNo': prodeceOrderNo(), 'fruits':[
-            {'name': apple.fruitName, 'measurement': apple.measurement, 'sum': fruits[0]},
-            {'name': banana.fruitName, 'measurement': banana.measurement, 'sum':fruits[1]},
-            {'name': pear.fruitName, 'measurement': pear.measurement, 'sum':fruits[2]},
-            {'name': lemon.fruitName, 'measurement': lemon.measurement, 'sum':fruits[3]}
+            {'name': apple.fruitName, 'measurement': apple.measurement, 'sum': int(fruits[0])},
+            {'name': banana.fruitName, 'measurement': banana.measurement, 'sum':int(fruits[1])},
+            {'name': pear.fruitName, 'measurement': pear.measurement, 'sum':int(fruits[2])},
+            {'name': lemon.fruitName, 'measurement': lemon.measurement, 'sum':int(fruits[3])}
         ]}
 
     return render_to_response('order.html',{'fruits':rFruits})

@@ -24,39 +24,31 @@
 	
 	<body>
 	<center>
-		<div class="header">
-			<h1>果果团</h1>
-		</div>
 
-        <!--
-		<div class="menuDiv">
-			<table>
-				<tr>
-					<td class="menu" id="username" width="50%"><a href="login.html">您还没登录,请登录</a></td>
-					<td class="menu" id="orderManage" width="50%"><a href="orderManage.html">订单管理</a></td>
-				</tr>
-			</table>
-		</div>
-	    -->
+
+
 	    <form active="" method="get" name="fruit" onSubmit="return check();">
             {% for fruit in fruits %}
 
-                <div class="item">
+                <div class="item" id="item">
                 <a href="{{ fruit.comment }}">
-                    <div class="itemPic">
+                    <div class="itemPic" id="itemPic">
                         <img src="{{ fruit.list.picture }}"  alt="{{ fruit.list.fruitName }}"/>
                     </div>
                 </a>
-                    <div class="itemContext">
+                    <div class="itemContext" id="itemContext">
                         <div class="itemTitle">
                         <a href="{{ fruit.comment }}" style="text-decoration: none;">
                             <h2>{{ fruit.list.fruitName }}</h2>
                         </a>
                             <span class="price" >团购价:<b>{{ fruit.list.price }}</b>斤</span>
-                            <span class="sum" style="margin:0 0 0 20px"><input class="fruitSum" name="fruitSum" type="text" size="3px"/>
+                            <span class="sum" style="margin:0 0 0 10px"><input class="fruitSum" name="fruitSum" type="text" size="3px"/>
                                 {% if fruit.list.measurement %}个
                                 {% else %} 斤
                                 {% endif %}
+                                {% ifnotequal forloop.counter 4 %}
+                                    <label class="weigth">约0斤</label>
+                                {% endifnotequal %}
                             </span>
                             <hr>
                         </div>
@@ -71,86 +63,7 @@
 
             {% endfor %}
 
-<!--
-		<div class="item">
-			<div class="itemPic">
-				<img src=""  alt="苹果"/>
-			</div>
-			<div class="itemContext">
-				<div class="itemTitle">
-					<h2>陕西红苹果</h2>
-					<span class="price" id="applePrice">团购价:<b>6.5</b>斤</span>
-					<span class="sum" style="margin:0 0 0 20px"><input id="appleSum" type="text" size="3px"/>个</span>
-					<hr>
-				</div>
-				<div class="itemInf">
-					<span class="comment" id="appleComment" style="float:left;">评论:<a href="#" id="itemComment">(10)条</a></span>
-					<span class="number" id="appleNumber" style="float:right;">已售:(<b>10</b>)</span>
 
-				</div>
-			</div>
-		</div>
-
-
-		<div class="item">
-			<div class="itemPic">
-				<img src="" alt="香蕉"/>
-			</div>
-			<div class="itemContext">
-				<div class="itemTitle">
-					<h2>香蕉</h2>
-					<span class="price" id="bananaPrice">团购价:<b>4.0</b>斤</span>
-					<span class="sum" style="margin:0 0 0 20px"><input id="bananaSum" type="text" size="3px"/>个</span>
-					<hr>
-				</div>
-				<div class="itemInf">
-					<span class="comment" id="bananaComment" style="float:left;">评论:<a href="#">(10)条</a></span>
-					<span class="number" id="bananaNumber" style="float:right;">已售:(<b>10</b>)</span>
-
-				</div>
-			</div>
-		</div>
-
-
-		<div class="item">
-			<div class="itemPic">
-				<img src="" alt="雪梨"/>
-			</div>
-			<div class="itemContext">
-				<div class="itemTitle">
-					<h2>雪梨</h2>
-					<span class="price" id="pearPrice">团购价:<b>5.5</b>斤</span>
-					<span class="sum" style="margin:0 0 0 20px"><input id="pearSum" type="text" size="3px"/>个</span>
-					<hr>
-				</div>
-				<div class="itemInf">
-					<span class="comment" id="pearComment" style="float:left;">评论:<a href="#">(10)条</a></span>
-					<span class="number" id="pearNumber" style="float:right;">已售:(<b>10</b>)</span>
-
-				</div>
-			</div>
-		</div>
-
-
-		<div class="item">
-			<div class="itemPic">
-				<img src="" alt="柠檬"/>
-			</div>
-			<div class="itemContext">
-				<div class="itemTitle">
-					<h2>柠檬</h2>
-					<span class="price" id="lemonPrice">团购价:<b>4.5</b>两个</span>
-					<span class="sum" style="margin:0 0 0 20px"><input id="lemonSum" type="text" size="3px"/>个</span>
-					<hr>
-				</div>
-				<div class="itemInf">
-					<span class="comment" id="lemonComment" style="float:left;">评论:<a href="#">(10)条</a></span>
-					<span class="number" id="lemnoNumber" style="float:right;">已售:(<b>10</b>)</span>
-
-				</div>
-			</div>
-		</div>
--->
 		
 		<div class="submitDiv">
 			<input type="submit" class="submit" id="submit" value="订购">
@@ -175,6 +88,50 @@
             else
                 return true;
         }
+        window.onload = function()
+        {
+            adapter();
+            estimateWeigth();
+            function estimateWeigth()
+            {
+                var sum = document.getElementsByClassName("fruitSum");
+                var weigth = document.getElementsByClassName("weigth");
+                weigth[0].innerHTML = "约" + (sum[0].value*0.4).toFixed(1) + "斤";
+                weigth[1].innerHTML = "约" + (sum[1].value*0.5).toFixed(1) + "斤";
+                weigth[2].innerHTML = "约" + (sum[2].value*0.3).toFixed(1) + "斤";
+
+               sum[0].onchange = function(e)
+               {
+                   weigth[0].innerHTML = "约" + (sum[0].value*0.4).toFixed(1) + "斤";//alert((sum[0].value*0.4).toFixed(1));
+               }
+                sum[1].onchange = function(e)
+               {
+                   weigth[1].innerHTML = "约" + (sum[1].value*0.5).toFixed(1) + "斤";
+               }
+                sum[2].onchange = function(e)
+               {
+                   weigth[2].innerHTML = "约" + (sum[2].value*0.3).toFixed(1) + "斤";
+               }
+            }
+
+            //调整宽度
+            function adapter()
+            {
+                var item = document.getElementsByClassName("item");
+                var itemPic = document.getElementsByClassName("itemPic");
+                var itemContext = document.getElementsByClassName("itemContext");
+                var width = document.body.clientWidth - 120 - 10;alert(width);
+                for(var i = 0; i < itemContext.length; ++i)
+                {
+                    itemContext[i].style.width = width + "px";
+                    //itemPic[i].style.width = "25%";
+                }
+
+            }
+        }
+
+
+
     </script>
 
 	</center>

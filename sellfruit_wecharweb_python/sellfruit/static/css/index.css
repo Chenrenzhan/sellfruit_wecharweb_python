@@ -3,8 +3,9 @@
                 margin: 0;
                 padding: 0;
                 border: 0;
-                font-size: 100%;
                 font: inherit;
+                font-size: 80%;
+
                 vertical-align: baseline;
 
             }
@@ -61,8 +62,8 @@
 			}
 			.itemPic img{
 				margin: 0 10px;
-				width:80%;
-				height:80%;
+				width:80px;
+				height:80px;
 			}
 			.itemContext{
 				width: 62%;

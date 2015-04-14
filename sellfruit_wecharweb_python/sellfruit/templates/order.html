@@ -33,7 +33,7 @@
         <form name="orderForm" action="" method="get" onSubmit="return check();">
 		<div class="body" style="margin-bottom:90px;">
             {% for fruit in fruits.fruits %}
-
+                {% if fruit.sum != 0 %}
                 <div class="itemDiv">
                     <div class="item">
                         <span class="fruitName">{{ fruit.name }}</span>
@@ -44,6 +44,7 @@
                         </span>
 				    </div>
                 </div>
+                {% endif %}
             {% endfor %}
 			 
 			 <div>
@@ -85,6 +86,9 @@
 			</div>
 			</center>
 
+            <br />
+            <span>在"暨友园"公众号发"取消+电话号码"可取消订单，如"取消13800138000"</span>
+
 		</div>
 		</form>
     <script type="text/javascript">
@@ -122,6 +126,75 @@
             }
         }
 
+        window.onload = function()
+        {
+            var date = new Date();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hours = date.getHours();
+            var week = date.getDay();
+            month = month + 1;//因为月份是从0开始的
+            switch(week)
+            {
+                case 0:
+                    day += 1;
+                    setdate(month, day);
+                    break;
+                case 1:
+                    if(hours < 12)
+                    {
+                        setdate(month, day);
+                    }
+                    else
+                    {
+                        day += 2;
+                        setdate(month, day);
+                    }
+                    break;
+                case 2:
+                    day += 1;
+                    setdate(month, day);
+                    break;
+                case 3:
+                    if(hours < 12)
+                    {
+                        setdate(month, day);
+                    }
+                    else
+                    {
+                        day += 2;
+                        setdate(month, day);
+                    }
+                    break;
+                case 4:
+                    day += 1;
+                    setdate(month, day);
+                    break;
+                case 5:
+                    if(hours < 12)
+                    {
+                        setdate(month, day);
+                    }
+                    else
+                    {
+                        day += 3;
+                        setdate(month, day);
+                    }
+                    break;
+                case 6:
+                    day += 1;
+                    setdate(month, day);
+                    break;
+            }
+
+            function setdate(month, day)
+            {
+                document.getElementsByClassName("delSpan")[0].innerHTML = "请于" + month + "月" + day + "日12:30-13:30到饭堂一楼小卖部方向处自提";
+                document.getElementsByClassName("delSpan")[1].innerHTML = "预计" + month + "月" + day + "日13:00-13:30送达宿舍(2元运费)";
+            }
+
+
+        }
     </script>
 
 	</body>
