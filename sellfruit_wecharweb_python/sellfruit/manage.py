@@ -8,54 +8,105 @@ from django.http import HttpResponse,HttpResponseRedirect, HttpResponseNotFound
 from forms import OrderForm
 from models import *
 
+import datetime
+
 def orderForm(request):
-    orders = Order.objects.all()
-    orderForms = []
-    if(len(orders) == 0):
-        return HttpResponse('没有订购记录！')
-    else:
-        for order in orders:
-            orderNo = order.orderNo
-            allup = json.loads(order.allup)
-            # print(allup)
-            # print('allup[0].list.amount')
-            # print(allup[0].list.price)
-            appleSum = allup['allup'][0]['list']['amount']
-            applePrice = allup['allup'][0]['list']['price']
-            appleMeasure = allup['allup'][0]['list']['measurement']
-            # print(u'fff%s' % appleSum)
-            # print( measurement(appleMeasure))
-            # print(u'%s%s(%.2f斤)' % (appleSum, measurement(appleMeasure), applePrice))
-            apple = u'%s%s(%.2f斤)' % (appleSum, measurement(appleMeasure), applePrice)
 
-            bananaSum = allup['allup'][1]['list']['amount']
-            bananaPrice = allup['allup'][1]['list']['price']
-            bananaMeasure = allup['allup'][1]['list']['measurement']
-            banana = u'%s%s(%.2f斤)' % (bananaSum, measurement(bananaMeasure), bananaPrice)
+    if 'search' in request.GET:
+        stateFalse = False
+        stateTrue = False
+        start = '2015/01/01 12:00'
+        end = datetime.datetime.strftime(datetime.datetime.now(), "%Y/%m/%d %H:%M")
+        if(request.GET['start'] != ''):
+            start = request.GET['start']
+        if( request.GET['end'] != ''):
+            end = request.GET['end']
+        if 'stateFalse' in request.GET:
+            stateFalse = request.GET['stateFalse']
+        if 'stateTrue' in request.GET:
+            stateTrue = request.GET['stateTrue']
+        print(start == '')
+        print('aaaaaaaaaaaaaaaaaaaaa')
 
-            pearSum = allup['allup'][2]['list']['amount']
-            pearPrice = allup['allup'][2]['list']['price']
-            pearMeasure = allup['allup'][2]['list']['measurement']
-            pear = u'%s%s(%.2f斤)' % (pearSum, measurement(pearMeasure), pearPrice)
 
-            lemonSum = allup['allup'][3]['list']['amount']
-            lemonPrice = allup['allup'][3]['list']['price']
-            lemonMeasure = allup['allup'][3]['list']['measurement']
-            lemon1 = u'%s%s(%.2f斤)' % (lemonSum, measurement(lemonMeasure), lemonPrice)
+        if(stateFalse != stateTrue):
+            print('00000000000000000000000')
+            if(stateFalse == 'True'):
+                orders = Order.objects.filter(time__gte = strToDatetime(start), time__lte = strToDatetime(end),
+                                              state = False)
+                print('11111111111111111111')
+            if(stateTrue == 'True'):
+                orders = Order.objects.filter(time__gte = strToDatetime(start), time__lte = strToDatetime(end),
+                                              state = True)
+                print('222222222222222')
+        else:
+            orders = Order.objects.filter(time__gte = strToDatetime(start), time__lte = strToDatetime(end))
+            print('33333333333333333333333')
+            print(len(orders))
 
-            phone = order.phone
-            dorm = order.dorm
-            deliv = delivery(order.delivery)
-            st = state(order.state)
-            time = order.time
-            print(time)
-            orderForms.append(
-                OrderForm({'orderNo': orderNo, 'apple': apple, 'banana': banana, 'pear': pear, 'lemon': lemon1,
-                          'phone': phone, 'dorm': dorm, 'delivery': deliv, 'state': st,
-                          'time': time})
-            )
-    print(orderForms)
-    return render_to_response('manage.html', {'orders':orderForms})
+        orderForms = []
+        appleTotal = 0
+        bananaTotal = 0
+        pearTotal = 0
+        lemonTotal = 0
+
+        if(len(orders) == 0):
+            return render_to_response('manage.html')
+        else:
+            for order in orders:
+                orderNo = order.orderNo
+                allup = json.loads(order.allup)
+                appleSum = allup['allup'][0]['list']['amount']
+                appleTotal += int(appleSum)
+                applePrice = allup['allup'][0]['list']['price']
+                appleMeasure = allup['allup'][0]['list']['measurement']
+                apple = u'%s%s(%.2f斤)' % (appleSum, measurement(appleMeasure), applePrice)
+
+                bananaSum = allup['allup'][1]['list']['amount']
+                bananaTotal += int(bananaSum)
+                bananaPrice = allup['allup'][1]['list']['price']
+                bananaMeasure = allup['allup'][1]['list']['measurement']
+                banana = u'%s%s(%.2f斤)' % (bananaSum, measurement(bananaMeasure), bananaPrice)
+
+                pearSum = allup['allup'][2]['list']['amount']
+                pearTotal += int(pearSum)
+                pearPrice = allup['allup'][2]['list']['price']
+                pearMeasure = allup['allup'][2]['list']['measurement']
+                pear = u'%s%s(%.2f斤)' % (pearSum, measurement(pearMeasure), pearPrice)
+
+                lemonSum = allup['allup'][3]['list']['amount']
+                lemonTotal += int(lemonSum)
+                lemonPrice = allup['allup'][3]['list']['price']
+                lemonMeasure = allup['allup'][3]['list']['measurement']
+                lemon1 = u'%s%s(%.2f斤)' % (lemonSum, measurement(lemonMeasure), lemonPrice)
+
+                phone = order.phone
+                dorm = order.dorm
+                deliv = delivery(order.delivery)
+                st = state(order.state)
+                time = order.time
+                print(time)
+                orderForms.append(
+                    OrderForm({'orderNo': orderNo, 'apple': apple, 'banana': banana, 'pear': pear, 'lemon': lemon1,
+                              'phone': phone, 'dorm': dorm, 'delivery': deliv, 'state': st,
+                              'time': time})
+                )
+        print(orderForms)
+        return render_to_response('manage.html', {'orders':orderForms, 'appleTotal':appleTotal,
+                                                  'bananaTotal':bananaTotal, 'pear':pearTotal, 'lemon':lemonTotal})
+
+    elif 'change' in request.GET:
+        orderNoList = request.GET.getlist('orderNo')
+        statesList = request.GET.getlist('state')
+        for index, orderNo in enumerate(orderNoList):
+            order = Order.objects.get(orderNo = orderNo)
+            if(statesList[index] == 'False'):
+                order.state = False
+            else:
+                order.state = True
+            order.save()
+
+    return render_to_response('manage.html')
 
 def measurement(measure):
     if(measure == 0):
@@ -75,5 +126,8 @@ def state(state):
     else:
         return u'未配送'
 
+#字符串转datetime
+def strToDatetime(str):
+    return datetime.datetime.strptime(str,"%Y/%m/%d %H:%M")
 
 

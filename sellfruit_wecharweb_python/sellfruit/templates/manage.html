@@ -58,18 +58,93 @@
         input{
             width:100px;
             //padding:0px;
-           //border: 0px;
+           border: 0px;
+            //display: none;
         }
         input#id_time{
             width:125px;
         }
+        td.td_state{
+            width:50px;
+            //word-break:keep-all; /* for ie */
+           // white-space:nowrap; /* for chrome */
+        }
+        input.time{
+            border: 1px solid black;
+            width: 120px;
+        }
+        span.time{
+            font-size: 18px;
+            margin-left: 10px;
+        }
+        input.search{
+            font-size: 18px;
+            margin-left: 10px;
+        }
+        .searchDiv{
+            font-size: 18px;
+        }
+        .radio{
+            width: 5px;
+        }
+        thead{
+            font-size: 16px;
+        }
+        .tdTotal{
+            font-size: 20px;
+            text-align: center;
+            color: #178FE5;
+        }
+        input:disabled{
+            background-color: #FFFFFF;
+    //border: 1px solid red;
+             color: black;
+        }
+
     </style>
+
+    {% load staticfiles %}
+		<link rel="stylesheet" href="{% static "css/index.css"%}" >
+    <link rel="stylesheet" type="text/css" href="{% static "css/jquery.datetimepicker.css"%}" />
+    <script src="{% static "js/jquery.js"%}"></script>
+    <script src="{% static "js/jquery.datetimepicker.js"%}"></script>
 
 </head>
 <body>
     <br />
-    <div class="orderForm">
-        <form action="" method="">
+    <div class="searchDiv">
+        <form action="#" method="get" name="search">
+
+
+            <span class="time">开始时间：</span><input type="text" name="start" class="time" id="start"/>
+            <span class="time">结束时间：</span><input type="text" name="end" class="time" id="end"/>
+            <input type="checkbox" name="stateFalse" value="True" class="radio"/>未配送
+            <input type="checkbox" name="stateTrue" value="True" class="radio"/>已配送
+
+            <input type="submit" value="确定" class="search" name="search"/>
+        </form>
+    </div>
+
+    <br />
+    <br />
+    <div class="totalDiv">
+        <table class="=tatolTable"  cellpadding="0px" cellspacing="0px">
+            <thead>
+                <tr><th>苹果</th><th>香蕉</th><th>雪梨</th><th>柠檬</th></tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td class="tdTotal">{{ appleTotal }}个</td><td class="tdTotal">{{ bananaTotal }}条</td>
+                    <td class="tdTotal">{{ pearTotal }}个</td><td class="tdTotal">{{ lemonTotal }}个</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <br />
+    <br />
+    <div class="orderForm" id="orderForm">
+        <form action="" method="get" name="order">
             <table class="order" cellpadding="0px" cellspacing="0px">
                 <thead>
                 <tr>
@@ -96,14 +171,69 @@
                     <td>{{ order.phone }}</td>
                     <td>{{ order.dorm }}</td>
                     <td>{{ order.delivery }}</td>
-                    <td>{{ order.state }}</td>
+                    <td class="td_state">{{ order.state }}</td>
                     <td>{{ order.time }}</td>
                 </tr>
                 {% endfor %}
                 </tbody>
             </table>
+        <input type="submit" id="submit" name="change" class="submit" value="确认修改">
         </form>
 
     </div>
+
+    <script>
+        $('#start').datetimepicker();
+        $('#end').datetimepicker();
+
+        window.onload = function()
+        {
+            setState();
+            setInputDisable();
+            function setState()
+            {
+                var states = document.getElementsByName("state");
+                var tdStates = document.getElementsByClassName("td_state");
+                var stateArray = new Array()
+                for(var i = 0; i < states.length; ++i){
+                    stateArray[i] = states[i].value;
+                }
+                for(var i = 0; i < tdStates.length; ++i){
+                    var str = "<select name=\"state\"  class=\"stateSelect\">"
+                            + "<option value=\"False\">未配送</option>"
+                            + "<option value=\"True\">已配送</option>"
+                            + "</select>";
+                    tdStates[i].innerHTML = str;
+                }
+                var slstate = document.getElementsByClassName('stateSelect');
+                for(var i = 0; i < stateArray.length; ++i){
+                    if(stateArray[i] == "未配送"){
+                        slstate[i][0].selected = true;
+                    }
+                    else{
+                        slstate[i][1].selected = true;
+                    }
+                }
+            }
+
+            function setInputDisable(){
+                var orderForm = document.getElementById("orderForm");
+                var inputs = orderForm.getElementsByTagName("input");
+                for(var i = 0; i < inputs.length; ++i){
+                    if(inputs[i].id == "submit") {
+                        continue;
+                    }
+                    if(inputs[i].name == "orderNo"){
+                        inputs[i].readOnly = true;
+                        continue;
+                    }
+                    inputs[i].disabled="disabled";
+                }
+            }
+
+        }
+
+    </script>
+
 </body>
 </html>

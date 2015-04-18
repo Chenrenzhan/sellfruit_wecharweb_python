@@ -76,7 +76,7 @@
 			 </div>	
 
 			<div class="telephone">
-				<p class="inputP">手机号：<input type="tel" name="phone" class="inputText" id="telephone" /> </p>
+				<p class="inputP">长(短)号：<input type="tel" name="phone" class="inputText" id="telephone" /> </p>
 			</div>
 			<hr color="black">
 			<center>
@@ -102,6 +102,7 @@
 
         function check()
         {
+            /*
             var radio = document.getElementsByName("del");
             if(radio[1].checked)
             {
@@ -124,6 +125,9 @@
                 alert("水果订购成功！");
                 return true;
             }
+            */
+            alert("20号开市优惠多多，欢迎20号来下单！");
+            return false;
         }
 
         window.onload = function()
@@ -182,7 +186,7 @@
                     }
                     break;
                 case 6:
-                    day += 1;
+                    day += 2;
                     setdate(month, day);
                     break;
             }

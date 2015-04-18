@@ -41,9 +41,16 @@
                         <a href="{{ fruit.comment }}" style="text-decoration: none;">
                             <h2>{{ fruit.list.fruitName }}</h2>
                         </a>
-                            <span class="price" >团购价:<b>{{ fruit.list.price }}</b>斤</span>
+                            <span class="price" >团购价:<b>{{ fruit.list.price }}</b>
+                                {% ifequal forloop.counter 4 %}元/个
+                                {% else %}元/斤
+                                {% endifequal %}
+                            </span>
                             <span class="sum" style="margin:0 0 0 10px"><input class="fruitSum" name="fruitSum" type="text" size="3px"/>
-                                {% if fruit.list.measurement %}个
+                                {% if fruit.list.measurement %}
+                                    {% ifequal forloop.counter 2 %}条
+                                    {% else %}个
+                                    {% endifequal %}
                                 {% else %} 斤
                                 {% endif %}
                                 {% ifnotequal forloop.counter 4 %}
@@ -73,20 +80,22 @@
 	<script type="text/javascript">
         function check()
         {
-            var fruitsSum = document.fruit.fruitSum;
-            var flag = 0;
-            for(var i = 0; i < fruitsSum.length; ++i)
-            {
-                if(fruitsSum[i].value != "" && fruitsSum[i].value != "0")
-                    flag = 1;
-            }
-            if(flag == 0)
-            {
-                alert("您还没选水果呢！");
-                return false;
-            }
-            else
-                return true;
+{#            var fruitsSum = document.fruit.fruitSum;#}
+{#            var flag = 0;#}
+{#            for(var i = 0; i < fruitsSum.length; ++i)#}
+{#            {#}
+{#                if(fruitsSum[i].value != "" && fruitsSum[i].value != "0")#}
+{#                    flag = 1;#}
+{#            }#}
+{#            if(flag == 0)#}
+{#            {#}
+{#                alert("您还没选水果呢！");#}
+{#                return false;#}
+{#            }#}
+{#            else#}
+{#                return true;#}
+           alert("20号才开市哦!\n周五中午12点我们将在快件服务中心举办免费试吃,欢迎大家来品尝哦!");
+            return false;
         }
         window.onload = function()
         {
