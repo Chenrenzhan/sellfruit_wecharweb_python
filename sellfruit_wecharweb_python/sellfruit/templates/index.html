@@ -25,7 +25,9 @@
 	<body>
 	<center>
 
-
+        <div style="margin-right: 10px">
+            <h3 align="right"><a href="http://127.0.0.1:8000/queryorder/">订单查询</a></h3>
+        </div>
 
 	    <form active="" method="get" name="fruit" onSubmit="return check();">
             {% for fruit in fruits %}
@@ -38,9 +40,9 @@
                 </a>
                     <div class="itemContext" id="itemContext">
                         <div class="itemTitle">
-                        <a href="{{ fruit.comment }}" style="text-decoration: none;">
-                            <h2>{{ fruit.list.fruitName }}</h2>
-                        </a>
+                        <h2><a href="{{ fruit.comment }}" style="text-decoration: none;color: red">
+                            {{ fruit.list.fruitName }}
+                        </a></h2>
                             <span class="price" >团购价:<b>{{ fruit.list.price }}</b>
                                 {% ifequal forloop.counter 4 %}元/个
                                 {% else %}元/斤
@@ -77,30 +79,44 @@
 		</div>
 		</form>
 
+    <div><h3 style="font-size: 12px">**<span style="color: black">注：每周一、三、五开市，给您造成不便请见谅</span>**</h3></div>
+
 	<script type="text/javascript">
         function check()
         {
-{#            var fruitsSum = document.fruit.fruitSum;#}
-{#            var flag = 0;#}
-{#            for(var i = 0; i < fruitsSum.length; ++i)#}
-{#            {#}
-{#                if(fruitsSum[i].value != "" && fruitsSum[i].value != "0")#}
-{#                    flag = 1;#}
-{#            }#}
-{#            if(flag == 0)#}
-{#            {#}
-{#                alert("您还没选水果呢！");#}
-{#                return false;#}
-{#            }#}
-{#            else#}
-{#                return true;#}
-           alert("20号才开市哦!\n周五中午12点我们将在快件服务中心举办免费试吃,欢迎大家来品尝哦!");
-            return false;
+            var fruitsSum = document.fruit.fruitSum;
+            var flag = 0;
+            for(var i = 0; i < fruitsSum.length; ++i)
+            {
+                if(fruitsSum[i].value != "" && fruitsSum[i].value != "0")
+                    flag = 1;
+            }
+            if(flag == 0)
+            {
+                alert("您还没选水果呢！");
+                return false;
+            }
+            else
+                return true;
+
         }
         window.onload = function()
         {
+            //detectNumber();
             adapter();
             estimateWeigth();
+
+             function detectNumber(e){
+                var s = e.value;
+                 var patrn=/^[0-9]{1,4}$/;
+                 if (!patrn.exec(s)) {
+                    alert("请输入购买数量");
+                     e.value = "";
+                     return false;
+                 }
+                 return true;
+             }
+
             function estimateWeigth()
             {
                 var sum = document.getElementsByClassName("fruitSum");
@@ -111,16 +127,27 @@
 
                sum[0].onchange = function(e)
                {
-                   weigth[0].innerHTML = "约" + (sum[0].value*0.4).toFixed(1) + "斤";//alert((sum[0].value*0.4).toFixed(1));
+                   if(detectNumber(this)){
+                       weigth[0].innerHTML = "约" + (sum[0].value*0.4).toFixed(1) + "斤";//alert((sum[0].value*0.4).toFixed(1));
+                   }
+
                }
                 sum[1].onchange = function(e)
                {
-                   weigth[1].innerHTML = "约" + (sum[1].value*0.5).toFixed(1) + "斤";
+                   if(detectNumber(this)){
+                       weigth[1].innerHTML = "约" + (sum[1].value*0.5).toFixed(1) + "斤";
+                   }
+
                }
                 sum[2].onchange = function(e)
                {
-                   weigth[2].innerHTML = "约" + (sum[2].value*0.3).toFixed(1) + "斤";
+                   if(detectNumber(this)){
+                       weigth[2].innerHTML = "约" + (sum[2].value*0.3).toFixed(1) + "斤";
+                   }
                }
+                sum[3].onchange = function(e){
+                    detectNumber(this)
+                }
             }
 
             //调整宽度
@@ -129,7 +156,7 @@
                 var item = document.getElementsByClassName("item");
                 var itemPic = document.getElementsByClassName("itemPic");
                 var itemContext = document.getElementsByClassName("itemContext");
-                var width = document.body.clientWidth - 120 - 10;alert(width);
+                var width = document.body.clientWidth - 120 - 10;
                 for(var i = 0; i < itemContext.length; ++i)
                 {
                     itemContext[i].style.width = width + "px";
@@ -137,6 +164,8 @@
                 }
 
             }
+
+
         }
 
 

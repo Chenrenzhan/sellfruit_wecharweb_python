@@ -65,10 +65,18 @@ def order(request):
         return HttpResponseRedirect('/index/')
     if 'phone' in request.GET and request.GET['phone']:
         delivery = request.GET['del']
+        if(delivery == 'False'):
+            delivery = False
+        else:
+            delivery = True
+            print(delivery)
+        print((delivery == False))
+        print("[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]")
         phone = request.GET['phone']
         dorm = request.GET['dorm']
 
         orderNo = prodeceOrderNo()
+        print(orderNo)
         allup = {'allup': [
                      {'type':'apple',
                         'list':{"price":apple.price,"amount":fruits[0],"measurement":apple.measurement}},

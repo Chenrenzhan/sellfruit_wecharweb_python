@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="微信">
+
+<!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+<!-- Mobile Devices Support @end -->
+
+    <title>我的订单查询</title>
+
+    <style type="text/css">
+        html, body {
+            width: 100%;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            font: inherit;
+            font-size: 100%;
+            vertical-align: baseline;
+            //overflow:hidden;
+        }
+
+        #condition{
+             font-size: 80%;
+            flow: hidden;
+            text-align:left;
+            margin-top: 20px;
+        }
+        #phoneDiv{
+            width: 60%;
+            //margin-left: 2px;
+            //float:left;
+            flow:hidden;
+            display:inline;
+            text-align:left;
+        }
+         #radioDiv{
+            width: 40%;
+            //margin-left: 2px;
+            float:right;
+            display:inline;
+            text-align:left;
+            flow:hidden;
+        }
+        #submitDiv{
+            //clear : none;
+            flow: hidden;
+            text-align:center;
+            margin-top: 10px;
+        }
+        #submit{
+            align-content: center;
+            vertical-align:middle;
+            width: 100px;
+        }
+        #sumDiv{
+            font-size: 80%;
+            text-align:left;
+        }
+        #ordersDiv{
+            text-align: left;
+
+        }
+        .orderDiv{
+            margin-left: 2px;
+        }
+    </style>
+
+
+</head>
+<body>
+<center>
+    <div align="left" style="text-align:left;">
+        <a href="http://127.0.0.1:8000/index/"><h3 style="margin-left: 10px;">返回</h3></a>
+    </div>
+
+    <form active="" method="get">
+        <div id="condition">
+            <div id="phoneDiv">
+                <span style="margin-left: 2px">电话号码:</span>
+                <input id="phone" type="phone" value="" name="phone" size="11px"/>
+            </div>
+            <!-- Unnamed (单选框) -->
+            <div id="radioDiv" class="radio">
+                <input class="radio" id="last" type="radio" value="true" name="type" checked="checked"/><span>最近</span>
+                <input class="radio" id="all" type="radio" value="false" name="type"/><span>全部</span>
+            </div>
+        </div>
+
+      <div id="submitDiv" >
+        <input id="submit" type="submit" value="查询" name="query"/>
+      </div>
+    </form>
+    <br />
+
+    <div id="sumDiv" class="ax_形状">
+        <span id="orderum" style="margin-left: 2px">共有<span id="sum"> {{ total }}</span>个订单</span>
+    </div>
+
+
+    {% for order in orders %}
+    <hr />
+    <div id="ordersDiv" class="orderDiv">
+        <div id="orderDiv">
+            <div id="timeDiv">
+                <span >时间：</span>
+                <span class="time">{{ order.time }}</span>
+            </div>
+
+            {% for fruit in order.fruits %}
+                {% if fruit.sum != 0 %}
+                    <div class="fruit">
+                        <span >{{ fruit.name }}：</span>
+                        <span>{{ fruit.sum }}
+                        {% if forloop.counter == 2 %}条
+                        {% else %}个
+                        {% endif %}
+                        </span>
+                    </div>
+                {% endif %}
+
+
+
+            {% endfor %}
+
+            <div id="deliveryDiv" class="deliveryDiv">
+                <div id="delivery" class="delivery">
+                    <span class="dist">{{ order.delivery }}</span>：
+                    <span class="delivePlace">{{ order.state }}</span>
+                </div>
+            </div>
+        </div>
+    <hr />
+
+    <br />
+    {% endfor %}
+    </div>
+</center>
+
+<script>
+    window.onload = function(){
+        var timeStrs = document.getElementsByClassName("time");
+        var delivePlaces = document.getElementsByClassName("delivePlace");
+        var dist = document.getElementsByClassName("dist");alert(delivePlaces.length);
+        for(var i = 0; i < delivePlaces.length; ++i){alert(i);
+            if(delivePlaces[i].innerHTML == 0){
+                var str = timeStrs[i].innerHTML;
+                var yearstr = str.substring(0,4);
+                var monthstr = str.substring(5,7);
+                var daystr = str.substring(8,10);
+                var hourstr = str.substring(11,13);
+                var minustr = str.substring(14,16);
+                time = new Date(yearstr, monthstr, daystr, hourstr, minustr);
+                //alert(hours == 14);
+                var week = time.getDay();
+                var month = parseInt(monthstr);
+                var day = parseInt(daystr);
+                var hours = parseInt(hourstr);
+                day = deliveDay(week, day, hours);
+                if(dist[i].innerHTML == "自取"){
+                    delivePlaces[i].innerHTML = "请于" + month + "月" + day + "日12:00-13:00到快递服务中心自取";
+                }
+                else{
+                    delivePlaces[i].innerHTML = "预计" + month + "月" + day + "日13:00-13:30送达宿舍(2元运费)";
+                }
+                }
+                else{
+                    delivePlaces[i].innerHTML = "已取"
+                }
+
+        }
+        function deliveDay(week,day,  hours){
+            switch(week)
+                {
+                    case 0:
+                        day += 1;
+                        break;
+                    case 1:
+                        if(hours > 12)
+                            day += 2;
+                        break;
+                    case 2:
+                        day += 1;
+                        break;
+                    case 3:
+                        if(hours > 12)
+                            day += 2;
+                        break;
+                    case 4:
+                        day += 1;
+                        break;
+                    case 5:
+                        if(hours > 12)
+                            day += 3;
+                        break;
+                    case 6:
+                        day += 2;
+                        break;
+                }
+            return day;
+        }
+
+    }
+</script>
+
+</body>
+</html>

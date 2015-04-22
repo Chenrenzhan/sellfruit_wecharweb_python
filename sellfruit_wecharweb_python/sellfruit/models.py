@@ -26,7 +26,7 @@ class Order(models.Model):
     phone = models.CharField(max_length=11) #手机号码
     dorm = models.CharField(max_length=4) #宿舍号
     remarks = models.TextField(blank=True) #备注
-    time = models.DateTimeField(auto_now=True, auto_now_add=False) #生成订单的时间
+    time = models.DateTimeField(auto_now=False, auto_now_add=False) #生成订单的时间
     class Meta:
         ordering=['time']
 

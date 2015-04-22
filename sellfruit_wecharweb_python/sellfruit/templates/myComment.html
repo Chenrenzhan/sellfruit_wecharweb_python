@@ -81,6 +81,29 @@
 
         }
 
+        window.onload = function(){
+
+           document.getElementById("comment").onchange = function(){
+                if(!AntiSqlValid(this.value)){
+                    alert("有非法字段，请重新输入");
+                    this.value = "";
+                }
+           }
+
+
+            //防止注入
+         function AntiSqlValid(oField ) {
+             re = /<script>|select|update|delete|exec|count|’|"|=|;|>|<|%/i;
+             if (re.test(oField.value)) {
+                 //alert("请您不要在参数中输入特殊字符和SQL关键字！"); //注意中文乱码
+                 oField.value = "";
+                 oField.className = "errInfo";
+                 oField.focus();
+                 return false;
+             }
+         }
+        }
+
     </script>
 
 	</body>

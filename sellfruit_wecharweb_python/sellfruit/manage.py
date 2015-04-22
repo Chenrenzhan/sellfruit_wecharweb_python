@@ -70,6 +70,8 @@ def orderForm(request):
 
                 pearSum = allup['allup'][2]['list']['amount']
                 pearTotal += int(pearSum)
+                print(pearSum + 'pearSum')
+                print((pearTotal))
                 pearPrice = allup['allup'][2]['list']['price']
                 pearMeasure = allup['allup'][2]['list']['measurement']
                 pear = u'%s%s(%.2f斤)' % (pearSum, measurement(pearMeasure), pearPrice)
@@ -93,7 +95,8 @@ def orderForm(request):
                 )
         print(orderForms)
         return render_to_response('manage.html', {'orders':orderForms, 'appleTotal':appleTotal,
-                                                  'bananaTotal':bananaTotal, 'pear':pearTotal, 'lemon':lemonTotal})
+                                                  'bananaTotal':bananaTotal, 'pearTotal':pearTotal,
+                                                  'lemonTotal':lemonTotal})
 
     elif 'change' in request.GET:
         orderNoList = request.GET.getlist('orderNo')
@@ -131,3 +134,33 @@ def strToDatetime(str):
     return datetime.datetime.strptime(str,"%Y/%m/%d %H:%M")
 
 
+#encoding=utf-8
+
+# import xlwt
+# from django.http import HttpResponse
+# from django.template.loader import get_template
+# from django.db import connection
+
+
+# def save_asset_xls(request):
+#         sql = 'select * from book';
+#
+#         cursor = connection.cursor()
+#         cursor.execute(data_sql)
+#         row_all = cursor.fetchall()
+#
+#         _lst = []
+#         _lst.extend(row_all[:])
+#         _lst.insert(0, ['列1', '列2', '列3'])
+#
+#         book = xlwt.Workbook(encoding='utf8')
+#         sheet = book.add_sheet('untitled')
+#
+#         for row, rowdata in enumerate(_lst):
+#             for col, val in enumerate(rowdata):
+#                 sheet.write(row, col, val, style=xlwt.Style.default_style)
+#
+#         response = HttpResponse(mimetype='application/vnd.ms-excel')
+#         response['Content-Disposition'] = 'attachment; filename=example.xls'
+#         book.save(response)
+#         return response

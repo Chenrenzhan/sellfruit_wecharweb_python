@@ -13,7 +13,7 @@
 	<meta content="telephone=no, address=no" name="format-detection">
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
 	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
-	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
 
 <!-- Mobile Devices Support @end -->
     <title>管理</title>
@@ -85,7 +85,7 @@
             font-size: 18px;
         }
         .radio{
-            width: 5px;
+            width: 15px;
         }
         thead{
             font-size: 16px;
@@ -100,6 +100,9 @@
     //border: 1px solid red;
              color: black;
         }
+        #id_apple, #id_pear, #id_banana, #id_lemon{
+            color: #178FE5;
+        }
 
     </style>
 
@@ -108,6 +111,7 @@
     <link rel="stylesheet" type="text/css" href="{% static "css/jquery.datetimepicker.css"%}" />
     <script src="{% static "js/jquery.js"%}"></script>
     <script src="{% static "js/jquery.datetimepicker.js"%}"></script>
+    <script src="{% static "js/jquery-migrate-1.2.1.js"%}"></script>
 
 </head>
 <body>
@@ -123,6 +127,7 @@
 
             <input type="submit" value="确定" class="search" name="search"/>
         </form>
+        <input id="exportExcel" type="button" value="导出EXCEL"/>
     </div>
 
     <br />
@@ -130,10 +135,11 @@
     <div class="totalDiv">
         <table class="=tatolTable"  cellpadding="0px" cellspacing="0px">
             <thead>
-                <tr><th>苹果</th><th>香蕉</th><th>雪梨</th><th>柠檬</th></tr>
+                <tr><th>订单数</th><th>苹果</th><th>香蕉</th><th>雪梨</th><th>柠檬</th></tr>
             </thead>
             <tbody>
                 <tr>
+                    <td class="tdTotal">{{ orders | length }}</td>
                     <td class="tdTotal">{{ appleTotal }}个</td><td class="tdTotal">{{ bananaTotal }}条</td>
                     <td class="tdTotal">{{ pearTotal }}个</td><td class="tdTotal">{{ lemonTotal }}个</td>
                 </tr>
@@ -145,7 +151,7 @@
     <br />
     <div class="orderForm" id="orderForm">
         <form action="" method="get" name="order">
-            <table class="order" cellpadding="0px" cellspacing="0px">
+            <table class="order" cellpadding="0px" cellspacing="0px" id="order">
                 <thead>
                 <tr>
                     <th>订单号</th>
@@ -188,8 +194,9 @@
 
         window.onload = function()
         {
-            setState();
             setInputDisable();
+            setTimeout(setState, 1000);
+
             function setState()
             {
                 var states = document.getElementsByName("state");
@@ -231,6 +238,56 @@
                 }
             }
 
+        }
+
+        document.getElementById("exportExcel").onclick = function(e){
+            var order = document.getElementById("order").innerHTML;
+            alert(order);
+            parseXML(order)
+        }
+
+        function AutomateExcel() {
+            var oXL = new ActiveXObject("Excel.Application");
+            // Get a new workbook.
+            var oWB = oXL.Workbooks.Add();
+            var oSheet = oWB.ActiveSheet;
+            var table = document.all.data;
+            var hang = table.rows.length;
+            var lie = table.rows(0).cells.length;alert(lie);
+            // Add table headers going cell by cell.
+            for (i = 0; i < hang; i++)
+            {
+                for (j = 0; j < lie; j++)
+                {
+                //oSheet.Cells(i+1,j+1).Font.Bold = True
+                // oSheet.Cells(i+1,j+1).Font.Size = 50
+                // oSheet.Cells(i+1,j+1).Alignment = 2
+                oSheet.Cells(i + 1, j + 1).value = table.rows(i).cells(j).innerText;
+                }
+            }
+            oXL.Visible = true;
+            oXL.UserControl = true;
+        }
+
+        function parseXML(str) {
+            if (str == null) return null;
+            if ($.trim(str) == "") return createDocument();
+
+            var dom = str;
+            if ($.browser.msie) {
+                dom = new ActiveXObject("Microsoft.XMLDOM");
+                dom.async = "false";
+                dom.loadXML(str);
+            }
+            else if (typeof (DOMParser) != "undefined") {
+                var parser = new DOMParser();
+                try {
+
+                    dom = parser.parseFromString(str, "text/xml");
+                } catch (e) {
+                }
+                ;
+            }
         }
 
     </script>

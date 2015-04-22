@@ -55,7 +55,7 @@
 						</div>
 						<div class="delAddr">
 							<span class="delSpan">
-								请于**月**日12:30-13:30到饭堂一楼小卖部方向处自提
+								请于**月**日12:30-13:30到成快递服务中心自提
 							</span>
 						</div>
 					</div>
@@ -63,12 +63,12 @@
 						<div class="delWay">
 							<input type="radio" name="del" id="sendToDorm" value="False"/>送到宿舍
 						</div>
-						<div class="delAddr">
+						<div class="delAddr" >
 							<span class="delSpan">
 								预计**月**日13:00-13:30送达宿舍(2元运费)
 							</span>
 						</div>
-						<div class="dormNo" >
+						<div class="dormNo" id="dorm" style="visibility: hidden;">
 							<p class="inputP">宿舍号：<input type="number" name="dorm" class="inputText" id="dormNo" /> </p>
 						</div>
 					</div>
@@ -96,13 +96,14 @@
         {
             if(document.getElementById("telephone").value == "")
                 alert("亲，您还没写电话呢！");
-            else if(document.getElementById("telephone").value.length != 11)
+            else if((document.getElementById("telephone").value.length != 11) &&
+                     (document.getElementById("telephone").value.length != 6) )
                 alert("亲，电话不对哦！")
         }
 
         function check()
         {
-            /*
+
             var radio = document.getElementsByName("del");
             if(radio[1].checked)
             {
@@ -117,17 +118,27 @@
                 alert("亲，您还没写电话呢！");
                 return false;
             }
-            else if(document.getElementById("telephone").value.length != 11) {
+            else if((document.getElementById("telephone").value.length != 11) &&
+                    (document.getElementById("telephone").value.length != 6) )
+            {
                 alert("亲，电话不对哦！");
                 return false;
             }
             else {
-                alert("水果订购成功！");
+                var radioDorm = document.getElementById("sendToDorm");
+                var radioSelf = document.getElementById("self");
+                var str="";
+                if(radioSelf.checked){
+                    str = document.getElementsByClassName("delSpan")[0].innerHTML;
+                }
+                else{
+                    str = document.getElementsByClassName("delSpan")[1].innerHTML;
+                }
+                alert("      水果订购成功！\r\n"+str);
                 return true;
             }
-            */
-            alert("20号开市优惠多多，欢迎20号来下单！");
-            return false;
+
+
         }
 
         window.onload = function()
@@ -189,16 +200,32 @@
                     day += 2;
                     setdate(month, day);
                     break;
+
+
             }
 
             function setdate(month, day)
             {
-                document.getElementsByClassName("delSpan")[0].innerHTML = "请于" + month + "月" + day + "日12:30-13:30到饭堂一楼小卖部方向处自提";
+                document.getElementsByClassName("delSpan")[0].innerHTML = "请于" + month + "月" + day + "日12:30-13:30到快递服务中心自提";
                 document.getElementsByClassName("delSpan")[1].innerHTML = "预计" + month + "月" + day + "日13:00-13:30送达宿舍(2元运费)";
             }
 
+            var radioDorm = document.getElementById("sendToDorm");
+            var radioSelf = document.getElementById("self");
+            var divDorm = document.getElementById("dorm");
+            radioDorm.onchange = function(e){
+                divDorm.style.visibility = "visible";
+            }
+            radioSelf.onchange = function(e) {
+                divDorm.style.visibility = "hidden";
+            }
 
         }
+
+
+
+
+
     </script>
 
 	</body>
