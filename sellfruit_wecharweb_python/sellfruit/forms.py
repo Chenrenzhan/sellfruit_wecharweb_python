@@ -55,6 +55,8 @@ class OrderForm(forms.Form):
     banana = forms.CharField(max_length=20, required=False)
     pear = forms.CharField(max_length=20, required=False)
     lemon = forms.CharField(max_length=20, required=False)
+    mango = forms.CharField(max_length=20, required=False)
+    pitaya = forms.CharField(max_length=20, required=False)
     phone = forms.CharField(max_length=11)
     dorm = forms.CharField(max_length=4, required=False)
     delivery = forms.CharField(max_length=50)

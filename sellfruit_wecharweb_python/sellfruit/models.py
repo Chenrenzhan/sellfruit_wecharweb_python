@@ -30,15 +30,11 @@ class Order(models.Model):
     class Meta:
         ordering=['time']
 
-    class Admin:
-        list_display = ('oderNo', 'allup', 'phone', 'dorm', 'delivery', 'time')
-        #list_filter = ('orderNo', 'publication_date')
-        ordering = ('-time',)
-        search_fields = ('orderNo',)
+   
 
 #水果价格
 class Fruit(models.Model):
-    fruitType = models.PositiveSmallIntegerField(primary_key=True) #水果类型，1-苹果，2-香蕉，3-雪梨，4-柠檬
+    fruitType = models.PositiveSmallIntegerField(primary_key=True) #水果类型，1-苹果，2-香蕉，3-雪梨，4-柠檬，5-芒果，6-火龙果
     fruitName = models.CharField(max_length=50) #水果类型
     price = models.FloatField() #水果单价
     measurement = models.BooleanField(default=True) #measurement-称量方式，true-以“个”算，false-以“斤”算

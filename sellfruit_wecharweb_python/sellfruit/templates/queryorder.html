@@ -151,8 +151,8 @@
     window.onload = function(){
         var timeStrs = document.getElementsByClassName("time");
         var delivePlaces = document.getElementsByClassName("delivePlace");
-        var dist = document.getElementsByClassName("dist");alert(delivePlaces.length);
-        for(var i = 0; i < delivePlaces.length; ++i){alert(i);
+        var dist = document.getElementsByClassName("dist");
+        for(var i = 0; i < delivePlaces.length; ++i){
             if(delivePlaces[i].innerHTML == 0){
                 var str = timeStrs[i].innerHTML;
                 var yearstr = str.substring(0,4);

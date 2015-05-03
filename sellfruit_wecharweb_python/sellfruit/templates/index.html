@@ -43,7 +43,7 @@
                         <h2><a href="{{ fruit.comment }}" style="text-decoration: none;color: red">
                             {{ fruit.list.fruitName }}
                         </a></h2>
-                            <span class="price" >团购价:<b>{{ fruit.list.price }}</b>
+                            <span class="price" >团购:<b>{{ fruit.list.price }}</b>
                                 {% ifequal forloop.counter 4 %}元/个
                                 {% else %}元/斤
                                 {% endifequal %}
@@ -79,7 +79,7 @@
 		</div>
 		</form>
 
-    <div><h3 style="font-size: 12px">**<span style="color: black">注：每周一、三、五开市，给您造成不便请见谅</span>**</h3></div>
+    <div style="margin-bottom:20px"><h3 style="font-size: 12px">**<span style="color: black">注：每周一、三、五开市，给您造成不便请见谅</span>**</h3></div>
 
 	<script type="text/javascript">
         function check()

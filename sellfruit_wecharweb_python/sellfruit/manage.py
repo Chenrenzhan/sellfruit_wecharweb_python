@@ -26,22 +26,22 @@ def orderForm(request):
         if 'stateTrue' in request.GET:
             stateTrue = request.GET['stateTrue']
         print(start == '')
-        print('aaaaaaaaaaaaaaaaaaaaa')
+        
 
 
         if(stateFalse != stateTrue):
-            print('00000000000000000000000')
+           
             if(stateFalse == 'True'):
                 orders = Order.objects.filter(time__gte = strToDatetime(start), time__lte = strToDatetime(end),
                                               state = False)
-                print('11111111111111111111')
+                
             if(stateTrue == 'True'):
                 orders = Order.objects.filter(time__gte = strToDatetime(start), time__lte = strToDatetime(end),
                                               state = True)
-                print('222222222222222')
+                
         else:
             orders = Order.objects.filter(time__gte = strToDatetime(start), time__lte = strToDatetime(end))
-            print('33333333333333333333333')
+          
             print(len(orders))
 
         orderForms = []
@@ -49,6 +49,8 @@ def orderForm(request):
         bananaTotal = 0
         pearTotal = 0
         lemonTotal = 0
+        mangoTotal = 0
+        pitayaTotal = 0
 
         if(len(orders) == 0):
             return render_to_response('manage.html')
@@ -56,31 +58,63 @@ def orderForm(request):
             for order in orders:
                 orderNo = order.orderNo
                 allup = json.loads(order.allup)
-                appleSum = allup['allup'][0]['list']['amount']
-                appleTotal += int(appleSum)
-                applePrice = allup['allup'][0]['list']['price']
-                appleMeasure = allup['allup'][0]['list']['measurement']
-                apple = u'%s%s(%.2f斤)' % (appleSum, measurement(appleMeasure), applePrice)
 
-                bananaSum = allup['allup'][1]['list']['amount']
-                bananaTotal += int(bananaSum)
-                bananaPrice = allup['allup'][1]['list']['price']
-                bananaMeasure = allup['allup'][1]['list']['measurement']
-                banana = u'%s%s(%.2f斤)' % (bananaSum, measurement(bananaMeasure), bananaPrice)
+                # sum = [0,0,0,0,0,0]
+                total = [0,0,0,0,0,0]
+                # price = [0,0,0,0,0,0]
+                # measure = [1,1,1,1,1,1]
+                fruit = ['','','','','','']
+                a = allup['allup']
+                print(len(a))
+                for i in range(len(allup['allup'])):
+                    sum = allup['allup'][i]['list']['amount']
+                    total[i] += int(sum)
+                    price = allup['allup'][i]['list']['price']
+                    measure = allup['allup'][i]['list']['measurement']
+                    #apple = u'%s%s(%.2f斤)' % (appleSum, measurement(appleMeasure), applePrice)
+                    fruit[i] = u'%s%s' % (sum, measurement(measure))
 
-                pearSum = allup['allup'][2]['list']['amount']
-                pearTotal += int(pearSum)
-                print(pearSum + 'pearSum')
-                print((pearTotal))
-                pearPrice = allup['allup'][2]['list']['price']
-                pearMeasure = allup['allup'][2]['list']['measurement']
-                pear = u'%s%s(%.2f斤)' % (pearSum, measurement(pearMeasure), pearPrice)
-
-                lemonSum = allup['allup'][3]['list']['amount']
-                lemonTotal += int(lemonSum)
-                lemonPrice = allup['allup'][3]['list']['price']
-                lemonMeasure = allup['allup'][3]['list']['measurement']
-                lemon1 = u'%s%s(%.2f斤)' % (lemonSum, measurement(lemonMeasure), lemonPrice)
+                # appleSum = allup['allup'][0]['list']['amount']
+                # appleTotal += int(appleSum)
+                # applePrice = allup['allup'][0]['list']['price']
+                # appleMeasure = allup['allup'][0]['list']['measurement']
+                # #apple = u'%s%s(%.2f斤)' % (appleSum, measurement(appleMeasure), applePrice)
+                # apple = u'%s%s' % (appleSum, measurement(appleMeasure))
+                #
+                # bananaSum = allup['allup'][1]['list']['amount']
+                # bananaTotal += int(bananaSum)
+                # bananaPrice = allup['allup'][1]['list']['price']
+                # bananaMeasure = allup['allup'][1]['list']['measurement']
+                # #banana = u'%s%s(%.2f斤)' % (bananaSum, measurement(bananaMeasure), bananaPrice)
+                # banana = u'%s条' % (bananaSum)
+                #
+                # pearSum = allup['allup'][2]['list']['amount']
+                # pearTotal += int(pearSum)
+                # pearPrice = allup['allup'][2]['list']['price']
+                # pearMeasure = allup['allup'][2]['list']['measurement']
+                # #pear = u'%s%s(%.2f斤)' % (pearSum, measurement(pearMeasure), pearPrice)
+                # pear = u'%s%s' % (pearSum, measurement(pearMeasure))
+                #
+                # lemonSum = allup['allup'][3]['list']['amount']
+                # lemonTotal += int(lemonSum)
+                # lemonPrice = allup['allup'][3]['list']['price']
+                # lemonMeasure = allup['allup'][3]['list']['measurement']
+                # #lemon = u'%s%s(%.2f斤)' % (lemonSum, measurement(lemonMeasure), lemonPrice)
+                # lemon = u'%s%s' % (lemonSum, measurement(lemonMeasure))
+                #
+                # mangoSum = allup['allup'][4]['list']['amount']
+                # mangoTotal += int(lemonSum)
+                # mangoPrice = allup['allup'][4]['list']['price']
+                # mangoMeasure = allup['allup'][4]['list']['measurement']
+                # #mango = u'%s%s(%.2f斤)' % (mangoSum, measurement(mangoMeasure), mangoPrice)
+                # mango = u'%s%s' % (mangoSum, measurement(mangoMeasure))
+                #
+                # pitayaSum = allup['allup'][5]['list']['amount']
+                # pitayaTotal += int(lemonSum)
+                # pitayaPrice = allup['allup'][5]['list']['price']
+                # pitayaMeasure = allup['allup'][5]['list']['measurement']
+                # #pitaya = u'%s%s(%.2f斤)' % (pitayaSum, measurement(pitayaMeasure), pitayaPrice)
+                # pitaya = u'%s%s' % (pitayaSum, measurement(pitayaMeasure))
 
                 phone = order.phone
                 dorm = order.dorm
@@ -89,14 +123,16 @@ def orderForm(request):
                 time = order.time
                 print(time)
                 orderForms.append(
-                    OrderForm({'orderNo': orderNo, 'apple': apple, 'banana': banana, 'pear': pear, 'lemon': lemon1,
+                    OrderForm({'orderNo': orderNo, 'apple': fruit[0], 'banana': fruit[1],
+                               'pear': fruit[2], 'lemon': fruit[3], 'mango': fruit[4], 'pitaya': fruit[5],
                               'phone': phone, 'dorm': dorm, 'delivery': deliv, 'state': st,
                               'time': time})
                 )
         print(orderForms)
-        return render_to_response('manage.html', {'orders':orderForms, 'appleTotal':appleTotal,
-                                                  'bananaTotal':bananaTotal, 'pearTotal':pearTotal,
-                                                  'lemonTotal':lemonTotal})
+        return render_to_response('manage.html', {'orders':orderForms, 'appleTotal':total[0],
+                                                  'bananaTotal':total[1], 'pearTotal':total[2],
+                                                  'lemonTotal':total[3], 'mangoTotal':total[4],
+                                                  'pitayaTotal':total[5],})
 
     elif 'change' in request.GET:
         orderNoList = request.GET.getlist('orderNo')

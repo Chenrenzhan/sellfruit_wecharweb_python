@@ -13,7 +13,7 @@
 	<meta content="telephone=no, address=no" name="format-detection">
 	<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
 	<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
-
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 
 <!-- Mobile Devices Support @end -->
     <title>管理</title>
@@ -135,13 +135,17 @@
     <div class="totalDiv">
         <table class="=tatolTable"  cellpadding="0px" cellspacing="0px">
             <thead>
-                <tr><th>订单数</th><th>苹果</th><th>香蕉</th><th>雪梨</th><th>柠檬</th></tr>
+                <tr><th>订单数</th><th>苹果</th><th>香蕉</th><th>雪梨</th><th>柠檬</th><th>芒果</th><th>火龙果</th></tr>
             </thead>
             <tbody>
                 <tr>
                     <td class="tdTotal">{{ orders | length }}</td>
-                    <td class="tdTotal">{{ appleTotal }}个</td><td class="tdTotal">{{ bananaTotal }}条</td>
-                    <td class="tdTotal">{{ pearTotal }}个</td><td class="tdTotal">{{ lemonTotal }}个</td>
+                    <td class="tdTotal">{{ appleTotal }}个</td>
+                    <td class="tdTotal">{{ bananaTotal }}条</td>
+                    <td class="tdTotal">{{ pearTotal }}个</td>
+                    <td class="tdTotal">{{ lemonTotal }}个</td>
+                    <td class="tdTotal">{{ mangoTotal }}个</td>
+                    <td class="tdTotal">{{ pitayaTotal }}个</td>
                 </tr>
             </tbody>
         </table>
@@ -159,6 +163,8 @@
                     <th>香蕉</th>
                     <th>雪梨</th>
                     <th>柠檬</th>
+                    <th>芒果</th>
+                    <th>火龙果</th>
                     <th>电话</th>
                     <th>宿舍</th>
                     <th>配送方式</th>
@@ -174,6 +180,8 @@
                     <td>{{ order.banana }}</td>
                     <td>{{ order.pear }}</td>
                     <td>{{ order.lemon }}</td>
+                    <td>{{ order.mango }}</td>
+                    <td>{{ order.pitaya }}</td>
                     <td>{{ order.phone }}</td>
                     <td>{{ order.dorm }}</td>
                     <td>{{ order.delivery }}</td>

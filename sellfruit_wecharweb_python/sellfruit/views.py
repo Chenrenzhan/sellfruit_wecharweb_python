@@ -22,11 +22,15 @@ def index(request):
     banana = Fruit.objects.get(fruitType=2)
     pear = Fruit.objects.get(fruitType=3)
     lemon = Fruit.objects.get(fruitType=4)
+    mango = Fruit.objects.get(fruitType=5)
+    pitaya = Fruit.objects.get(fruitType=6)
     validate = {"fruits": [
         {"type":"apple","list":apple, 'comment': 'http://127.0.0.1:8000/comment/apple/',},
         {"type":"banana","list":banana, 'comment': 'http://127.0.0.1:8000/comment/banana/'},
         {"type":"pear","list":pear, 'comment': 'http://127.0.0.1:8000/comment/pear/'},
-        {"type":"lemon","list":lemon, 'comment': 'http://127.0.0.1:8000/comment/lemon/'}
+        {"type":"lemon","list":lemon, 'comment': 'http://127.0.0.1:8000/comment/lemon/'},
+        {"type":"mango","list":mango, 'comment': 'http://127.0.0.1:8000/comment/mango/'},
+        {"type":"pitaya","list":pitaya, 'comment': 'http://127.0.0.1:8000/comment/pitaya/'},
     ], }
 
     # comment = {'apple':removeAttr(apple, '_state'), 'banana': removeAttr(banana, '_state'),
@@ -54,6 +58,8 @@ def order(request):
     banana = Fruit.objects.get(fruitType=2)
     pear = Fruit.objects.get(fruitType=3)
     lemon = Fruit.objects.get(fruitType=4)
+    mango = Fruit.objects.get(fruitType=5)
+    pitaya = Fruit.objects.get(fruitType=6)
 
     fruits = request.session['fruits']
     for index in range(len(fruits)):
@@ -69,14 +75,12 @@ def order(request):
             delivery = False
         else:
             delivery = True
-            print(delivery)
-        print((delivery == False))
-        print("[[[[[[[[[[[[[[[[[[[]]]]]]]]]]]]")
+        
         phone = request.GET['phone']
         dorm = request.GET['dorm']
 
         orderNo = prodeceOrderNo()
-        print(orderNo)
+   
         allup = {'allup': [
                      {'type':'apple',
                         'list':{"price":apple.price,"amount":fruits[0],"measurement":apple.measurement}},
@@ -86,6 +90,10 @@ def order(request):
                         'list':{"price":pear.price,"amount":fruits[2],"measurement":pear.measurement}},
                      {'type':'lemon',
                         'list':{"price":lemon.price,"amount":fruits[3],"measurement":lemon.measurement}},
+                     {'type':'mango',
+                        'list':{"price":mango.price,"amount":fruits[4],"measurement":mango.measurement}},
+                     {'type':'pitaya',
+                        'list':{"price":pitaya.price,"amount":fruits[5],"measurement":pitaya.measurement}},
         ],}
         allmoney = 0
         state = False
@@ -106,6 +114,10 @@ def order(request):
             pear.save()
             lemon.amount += int(fruits[3])
             lemon.save()
+            mango.amount += int(fruits[4])
+            mango.save()
+            pitaya.amount += int(fruits[5])
+            pitaya.save()
 
             return HttpResponseRedirect('/index/')
     # else:
@@ -114,7 +126,9 @@ def order(request):
             {'name': apple.fruitName, 'measurement': apple.measurement, 'sum': int(fruits[0])},
             {'name': banana.fruitName, 'measurement': banana.measurement, 'sum':int(fruits[1])},
             {'name': pear.fruitName, 'measurement': pear.measurement, 'sum':int(fruits[2])},
-            {'name': lemon.fruitName, 'measurement': lemon.measurement, 'sum':int(fruits[3])}
+            {'name': lemon.fruitName, 'measurement': lemon.measurement, 'sum':int(fruits[3])},
+            {'name': mango.fruitName, 'measurement': mango.measurement, 'sum':int(fruits[4])},
+            {'name': pitaya.fruitName, 'measurement': pitaya.measurement, 'sum':int(fruits[5])},
         ]}
 
     return render_to_response('order.html',{'fruits':rFruits})
@@ -124,11 +138,15 @@ def comment(request, url):
     banana = Comment.objects.filter(fruit_id = 2)
     pear = Comment.objects.filter(fruit_id = 3)
     lemon = Comment.objects.filter(fruit_id = 4)
+    mango = Comment.objects.filter(fruit_id = 5)
+    pitaya = Comment.objects.filter(fruit_id = 6)
 
     appleF = Fruit.objects.get(fruitType=1) #从数据库读取苹果数据
     bananaF = Fruit.objects.get(fruitType=2)
     pearF = Fruit.objects.get(fruitType=3)
     lemonF = Fruit.objects.get(fruitType=4)
+    mangoF = Fruit.objects.get(fruitType=5)
+    pitayaF = Fruit.objects.get(fruitType=6)
     validate = {'fruit':appleF, 'comment': apple}
     print(request.path)
     path = request.path
@@ -146,6 +164,12 @@ def comment(request, url):
     elif(path == '/comment/lemon/'):
         validate = {'fruit':lemonF, 'comment': lemon}
         request.session['fruitType'] = 4
+    elif(path == '/comment/mango/'):
+        validate = {'fruit':mangoF, 'comment': mango}
+        request.session['fruitType'] = 5
+    elif(path == '/comment/pitaya/'):
+        validate = {'fruit':pitayaF, 'comment': pitaya}
+        request.session['fruitType'] = 6
     else:
         return HttpResponseNotFound('访问页面不存在404！')
     print(request.session['fruitType'])
@@ -154,7 +178,7 @@ def comment(request, url):
 
 def toComment(request):
     fruitType = int(request.session['fruitType'])
-    fruits = ['apple', 'banana', 'pear', 'lemon']
+    fruits = ['apple', 'banana', 'pear', 'lemon', 'mango', 'pitaya']
     path = '/comment/' + fruits[fruitType-1]
     print(fruitType)
 
