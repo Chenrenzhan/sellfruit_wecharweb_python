@@ -51,6 +51,7 @@ def orderForm(request):
         lemonTotal = 0
         mangoTotal = 0
         pitayaTotal = 0
+        total = [0,0,0,0,0,0]
 
         if(len(orders) == 0):
             return render_to_response('manage.html')
@@ -60,7 +61,7 @@ def orderForm(request):
                 allup = json.loads(order.allup)
 
                 # sum = [0,0,0,0,0,0]
-                total = [0,0,0,0,0,0]
+                # total = [0,0,0,0,0,0]
                 # price = [0,0,0,0,0,0]
                 # measure = [1,1,1,1,1,1]
                 fruit = ['','','','','','']
@@ -69,6 +70,8 @@ def orderForm(request):
                 for i in range(len(allup['allup'])):
                     sum = allup['allup'][i]['list']['amount']
                     total[i] += int(sum)
+                    print(total[i])
+                    print(sum)
                     price = allup['allup'][i]['list']['price']
                     measure = allup['allup'][i]['list']['measurement']
                     #apple = u'%s%s(%.2f斤)' % (appleSum, measurement(appleMeasure), applePrice)
@@ -128,7 +131,8 @@ def orderForm(request):
                               'phone': phone, 'dorm': dorm, 'delivery': deliv, 'state': st,
                               'time': time})
                 )
-        print(orderForms)
+        print("sssssssss")
+        print(total[0])
         return render_to_response('manage.html', {'orders':orderForms, 'appleTotal':total[0],
                                                   'bananaTotal':total[1], 'pearTotal':total[2],
                                                   'lemonTotal':total[3], 'mangoTotal':total[4],

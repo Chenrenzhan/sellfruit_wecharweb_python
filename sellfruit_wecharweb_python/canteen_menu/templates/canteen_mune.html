@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>暨珠食堂菜谱</title>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta name="author" content="暨珠食堂菜谱" />
+  <meta name="keywords" content="暨珠食堂菜谱" />
+  <meta name="description" content="暨珠食堂菜谱" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+
+  {% load staticfiles %}
+  <link href="{% static "css/style.css"%}" rel="stylesheet" type="text/css" />
+  <link href="{% static "css/lrtk.css"%}" rel="stylesheet" type="text/css" />
+
+  <script type="text/javascript" src="{% static "js/jquery-1.7.2.min.js"%}"></script>
+  <script src="{% static "js/common.js"%}" type="text/javascript"></script>
+  <script src="{% static "js/menu.js"%}" type="text/javascript"></script>
+  <script src="{% static "js/jquery.cookie.js"%}" type="text/javascript"></script>
+
+  <style type="text/css">
+      #nav{
+          //background: none repeat scroll 0% 0% #000;
+          //color: #FFFFFF;
+          top:0px;
+          //width:98%;
+          //margin: 0px auto;
+
+
+          filter:alpha(Opacity=60);-moz-opacity:0.6;opacity: 0.6 ;//设置头透明
+          //height: 50px
+      }
+
+  </style>
+
+ </head>
+ <body>
+  <!--页眉开始-->
+  <div id="header">
+       <!--幻灯片 开始-->
+           {% load staticfiles %}
+       <script type="text/javascript" src="{% static "js/jquery.flexslider-min.js"%}"></script>
+
+       <script type="text/javascript">
+           $(document).ready(function() {
+                    $('.myflexslider').flexslider({
+                            controlNav: true,
+                            directionNav: false,
+                            animation: "slide",
+                            //manualControls: ".myflexslider .slidenav"
+                        });
+              });
+       </script>
+
+
+       <div class="myflexslider" style="margin-top:1px;">
+            <ul class="slides">
+                 <li><img src="../static/images/canteen1.jpg" width="100%" /></li>
+                 <li><img src="../static/images/canteen2.jpg" width="100%" /></li>
+                 <li><img src="../static/images/canteen3.jpg" width="100%" /></li>
+                 <li><img src="../static/images/canteen4.jpg" width="100%" /></li>
+            </ul>
+       </div>
+       <!--幻灯片 结束-->
+  </div>
+
+<style>
+.floorDiv{
+    height: 40px;
+    width: 97%;
+    background-color: beige;
+{#    margin: 0px auto;#}
+    margin-left: 5px;
+    border-radius: 5px;
+    padding-top: 5px;
+
+}
+.floorSpan{
+    margin-left: 20px;
+
+    font-size: 1.2em;
+    font-weight:bold;
+{#    color: sandybrown;#}
+}
+.menu{
+    //height: 500px;
+}
+.channellist{
+    //height: 500px;
+    overflow: hidden;
+}
+.nav{
+    text-align: center;
+    //padding-right: 20px;
+}
+.nav_submenu{
+    text-align: left;
+    width: 130px;
+}
+.floor{
+    position: static;
+}
+
+</style>
+
+  <nav class="nav" id="nav" >
+      <form method="post" action="http://127.0.0.1:8000/canteenmenu/">
+            {% csrf_token %}
+      </form>
+  <ul class="nav_menu">
+{#    <li class="nav_menu-item" id="0"><a >全部</a>#}
+{#      <ul class="nav_submenu" id="s_0">#}
+{#        <li class="nav_submenu-item"> <a class="condition" id="0-0">鸡鸭及其它类</a></li>#}
+{#        <li class="nav_submenu-item"> <a class="condition" id="0-1">猪肉类</a></li>#}
+{#        <li class="nav_submenu-item"> <a class="condition" id="0-2">鱼类</a></li>#}
+{#        <li class="nav_submenu-item"> <a class="condition" id="0-3" >素菜类</a></li>#}
+{#        <li class="nav_submenu-item"> <a class="condition" id="0-4" >汤类</a></li>#}
+{#      </ul>#}
+{#    </li>#}
+
+    <li class="nav_menu-item" id="1"><a >一楼</a>
+      <ul class="nav_submenu" id="s_1">
+        <li class="nav_submenu-item" > <a href="#floor_1_0" class="condition" id="1_0">鸡鸭及其它类</a></li>
+        <li class="nav_submenu-item"> <a href="#floor_1_1" class="condition" id="1_1">猪肉类</a></li>
+        <li class="nav_submenu-item"> <a href="#floor_1_2" class="condition" id="1_2">鱼类</a></li>
+        <li class="nav_submenu-item"> <a href="#floor_1_3" class="condition" id="1_3" >素菜类</a></li>
+        <li class="nav_submenu-item"> <a href="#floor_1_4" class="condition" id="1_4" >汤类</a></li>
+      </ul>
+    </li>
+
+    <li class="nav_menu-item" id="2"><a >二楼</a>
+     <ul class="nav_submenu" id="s_2">
+        <li class="nav_submenu-item"> <a href="#floor_2_0" class="condition" id="2_0">鸡鸭及其它类</a></li>
+        <li class="nav_submenu-item"> <a href="#floor_2_1" class="condition" id="2_1">猪肉类</a></li>
+        <li class="nav_submenu-item"> <a href="#floor_2_2" class="condition" id="2_2">鱼类</a></li>
+        <li class="nav_submenu-item"> <a href="#floor_2_3" class="condition" id="2_3" >素菜类</a></li>
+     </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  <div id="content">
+
+  <div class="floor" id="floor_1_0" >
+    <div class="floorDiv">
+        <span class="floorSpan">一楼</span> >> <span class="sort">鸡鸭及其它类</span>
+    </div>
+    <div class="menu" id="1_0">
+
+        <ul class="channellist">
+           {% for menu in 1_0 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+
+        </ul>
+
+    </div>
+  </div>
+
+  <div class="floor" id="floor_1_1" >
+    <div class="floorDiv">
+        <span class="floorSpan">一楼</span> >> <span class="sort">猪肉类</span>
+    </div>
+    <div class="menu" id="1_1">
+        <ul class="channellist">
+           {% for menu in 1_1 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="floor" id="floor_1_2" >
+    <div class="floorDiv">
+        <span class="floorSpan">一楼</span> >> <span class="sort">鱼类</span>
+    </div>
+    <div class="menu" id="1_2">
+        <ul class="channellist">
+           {% for menu in 1_2 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="floor" id="floor_1_3" >
+    <div class="floorDiv">
+        <span class="floorSpan">一楼</span> >> <span class="sort">素菜类</span>
+    </div>
+    <div class="menu" id="1_3">
+        <ul class="channellist">
+           {% for menu in 1_3 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="floor" id="floor_1_4" >
+    <div class="floorDiv">
+        <span class="floorSpan">一楼</span> >> <span class="sort">汤类</span>
+    </div>
+    <div class="menu" id="1_4">
+        <ul class="channellist">
+           {% for menu in 1_4 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="floor" id="floor_2_0" >
+    <div class="floorDiv">
+        <span class="floorSpan">二楼</span> >> <span class="sort">鸡鸭及其它类</span>
+    </div>
+    <div class="menu" id="2_0">
+        <ul class="channellist">
+           {% for menu in 2_0 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="floor" id="floor_2_1" >
+    <div class="floorDiv">
+        <span class="floorSpan">二楼</span> >> <span class="sort">猪肉类</span>
+    </div>
+    <div class="menu" id="2_1">
+        <ul class="channellist">
+           {% for menu in 2_1 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="floor" id="floor_2_2" >
+    <div class="floorDiv">
+        <span class="floorSpan">二楼</span> >> <span class="sort">鱼类</span>
+    </div>
+    <div class="menu" id="2_2">
+        <ul class="channellist">
+           {% for menu in 2_2 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  <div class="floor" id="floor_2_3" >
+    <div class="floorDiv">
+        <span class="floorSpan">二楼</span> >> <span class="sort">素菜类</span>
+    </div>
+    <div class="menu" id="2_3">
+        <ul class="channellist">
+           {% for menu in 2_3 %}
+               <li>
+                   <a >
+                       <div class="ChannelIcon" style="margin-bottom: 10px; margin-top: 10px; ">
+                           <span class="name" style="color: #ff9900; font-size: 1em;">
+                               {{ menu.name }}
+                           </span>
+                       </div>
+                       <div class="ChannelName" style="margin-left: 0px; margin-right: 0px;">
+                           <span style=" font-weight:normal;font-size: 0.8em;">
+                               {{ menu.price }}元/份
+                           </span>
+                       </div>
+                   </a>
+               </li>
+           {% endfor %}
+        </ul>
+    </div>
+  </div>
+
+  </div>
+
+
+ </body>
+</html>

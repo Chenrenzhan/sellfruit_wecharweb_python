@@ -16,8 +16,8 @@
             
 <!-- Mobile Devices Support @end -->
 
-        {% load staticfiles %}
-		<link rel="stylesheet" href="{% static "css/index.css"%}" >
+
+		<link rel="stylesheet" href="../static/css/index.css" >
 	
 		<title>果果团</title>
 	</head>
@@ -44,9 +44,12 @@
                             {{ fruit.list.fruitName }}
                         </a></h2>
                             <span class="price" >团购:<b>{{ fruit.list.price }}</b>
-                                {% ifequal forloop.counter 4 %}元/个
+                                {% ifequal forloop.counter 4 %}元/两个
+                                {% else %}
+                                {% ifequal forloop.counter 6 %}元/个
                                 {% else %}元/斤
                                 {% endifequal %}
+								{% endifequal %}
                             </span>
                             <span class="sum" style="margin:0 0 0 10px"><input class="fruitSum" name="fruitSum" type="text" size="3px"/>
                                 {% if fruit.list.measurement %}
@@ -56,7 +59,9 @@
                                 {% else %} 斤
                                 {% endif %}
                                 {% ifnotequal forloop.counter 4 %}
-                                    <label class="weigth">约0斤</label>
+                                    {% ifnotequal forloop.counter 6 %}
+                                        <label class="weigth">约0斤</label>
+                                    {% endifnotequal %}
                                 {% endifnotequal %}
                             </span>
                             <hr>

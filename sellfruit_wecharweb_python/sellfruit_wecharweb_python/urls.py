@@ -8,6 +8,8 @@ from sellfruit.views import *
 from sellfruit.manage import orderForm
 from sellfruit.queryorder import queryorder
 
+from canteen_menu.views import canteenmenu
+
 urlpatterns = [
     # Examples:
     # url(r'^$', 'sellfruit_wecharweb_python.views.home', name='home'),
@@ -20,4 +22,7 @@ urlpatterns = [
     url(r'^tocomment/$',toComment),
     url(r'^manage/$', orderForm),
     url(r'^queryorder/$', queryorder),
+
+    #canteen_menu食堂菜单
+    url(r'^canteenmenu/$', canteenmenu),
 ]

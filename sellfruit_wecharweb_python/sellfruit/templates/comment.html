@@ -53,7 +53,7 @@
 			}
 			.userComment{
 				//float:left;
-				width;100%;
+				width:100%;
 				clear:both;
 			}
 			.userDiv{
@@ -88,6 +88,7 @@
 				width:70%;
 				height:30px;
 			}
+
 			
 		</style>
 		
@@ -122,13 +123,22 @@
         </a>
 			<div class="itemContext">
 				<div class="itemTitle">
+					<h2 style="margin-bottom: 25px;">
+                        <a href="http://127.0.0.1:8000/index/"style="text-decoration: none;color: red">
+                            {{ fruit.fruitName }}
+                        </a>
+                    </h2>
+					<span class="price" id="applePrice">团购:<b>{{ fruit.price }}</b>
+                        {% ifequal fruit.fruitType 4 %}元/两个
+                        {% else %}
+                            {% ifequal fruit.fruitType 6 %}元/个
+                             {% else %}元/斤
+                            {% endifequal %}
+                        {% endifequal %}
 
-					<span class="price" id="applePrice">团购价:<b>{{ fruit.price }}</b>斤</span>
-					<span class="sum" style="margin:0 0 0 20px"><input id="appleSum" type="text" size="3px"/>
-                        {% if fruit.measurement %}个
-                        {% else %}斤
-                        {% endif %}
+
                     </span>
+
 					<hr>
 				</div>
 				<div class="itemInf">

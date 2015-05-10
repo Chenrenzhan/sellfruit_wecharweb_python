@@ -40,12 +40,13 @@ INSTALLED_APPS = (
     # 'django.contrib.messages',
      'django.contrib.staticfiles',
      'sellfruit',
+    'canteen_menu',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    # 'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     # 'django.contrib.messages.middleware.MessageMiddleware',
@@ -89,7 +90,7 @@ USE_TZ = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/dev/howto/static-files/
-STATIC_ROOT = os.path.join(os.path.dirname(__file__), '../static')
+# STATIC_ROOT = os.path.join(os.path.dirname(__file__), '../static')
 
 STATIC_URL = '/static/'
 
@@ -99,28 +100,3 @@ TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
 )
-TEMPLATE_DIRS = (
-    os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
-    ('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
-    ('js', os.path.join(STATIC_ROOT, 'js').replace('\\', '/')),
-    ('images', os.path.join(STATIC_ROOT, 'images').replace('\\', '/')),
-
-    #('css', os.path.join(STATIC_ROOT, 'css').replace('\\', '/')),
-)
-
-# STATICFILES_DIRS = (
-#     os.path.join(os.path.dirname(__file__), '../static/').replace('\\','/'),
-# )
-#
-# #加入：
-# HERE = os.path.dirname(os.path.dirname(__file__))
-# #修改：
-# MEDIA_ROOT = os.path.join( HERE ,'media').replace('\\','/')
-# MEDIA_URL = '/media/'
-# STATIC_ROOT = os.path.join(HERE,'static').replace('\\','/')
-# STATIC_URL = '/static/'
-#
-# STATICFILES_DIRS = (
-#    os.path.join(HERE,'sellfruit/templates/static/').replace('\\','/'),
-# )
-# #推荐的做法是将静态文件保存在app下的static目录中。
