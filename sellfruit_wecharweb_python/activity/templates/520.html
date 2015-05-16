@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html  lang="zh-cn" style="min-width: 260px !important;max-width: 400px !important;">
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+
+
+    <title>暨友园520抽奖活动</title>
+
+
+    <meta charset="UTF-8">
+
+
+    <!-- base href="http://v.xiumi.us/board/v3/28O3N/1262893?from=groupmessage&isappinstalled=0" -->
+
+
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="renderer" content="webkit">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta http-equiv="x-rim-auto-match" content="none">
+
+
+
+
+    <link rel="stylesheet" href="../static/css/bootstrap.css">
+
+    <link rel="stylesheet" href="../static/css/520.css">
+
+
+
+
+
+</head>
+<body class="full-height-box board-body">
+
+<div class="inner ng-scope" ng-controller="BoardDeskController">
+    <section class="tn-article-section container" >
+
+        <section class="row tn-board-head">
+
+            <h3>还差一步报名成功了</h3>
+
+{#            <div class="tn-head-info">#}
+{#                <span class="time ng-binding" ng-bind="showInfo.created_at | date:'yyyy-M-d'">2015-5-14</span>#}
+{#                <span class="hor-sep"></span>#}
+{#                <span class="brand ng-binding" ng-bind="showInfo.owner.brand_name">+来</span>#}
+{#            </div>#}
+        </section>
+
+
+
+        <section class="row tn-board-body tn-article-content-context">
+            <hr>
+
+            <hr>
+        <!-- ngRepeat: slice in slices -->
+            <!--图片-->
+            <div >
+                <div >
+                    <!-- ngInclude: (page.templateId) | templateIdToPath: templatePath -->
+                    <div >
+                        <img class="title_image"
+                             style=" box-sizing: border-box;
+                                          width: 100%;
+                                          height: auto !important;
+                                          text-align: start;
+                                          border: 0.3em solid white;
+                                          -webkit-box-shadow: 0.2em 0.2em 0.5em #666;
+                                          -moz-box-shadow: 0.2em 0.2em 0.5em #666;
+                                          box-shadow: 0.2em 0.2em 0.5em #666"
+                             src="../static/images/love.jpg" >
+                    </div>
+                </div>
+            </div>
+
+            <hr>
+
+            <form method="post" action="http://127.0.0.1:8000/canteenmenu/">
+                {% csrf_token %}
+            </form>
+
+            <!--标题 -->
+            <div class="subTitle_div">
+                <div >
+                    <!-- ngInclude: (page.templateId) | templateIdToPath: templatePath -->
+                    <div >
+                        <fieldset class="subTitle_fieldset" style="">
+                            <section class="subTitle_frame" style="" >
+                                <section  class="subTitle_content" style="">
+                                    <section>报名信息：</section>
+                                </section><section class="subTitle_targe" style="" >
+
+                            </section>
+                            </section>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+            <!-- end ngRepeat: slice in slices -->
+
+            <div class="info" style="margin-top: 10px;">
+                <section>
+                    <span>手机号：</span>&nbsp;
+                    <span><input type="text" class="phone" id="phone"/></span>
+                </section>
+                <section style="margin-top: 10px;">
+                    <span>微信号：</span>&nbsp;
+                    <span><input type="text" class="wechat" id="wechat" /></span>
+                </section>
+                <section style="margin-top: 10px;">
+                    <span>性&nbsp;&nbsp;&nbsp;&nbsp;别：</span>
+                    <span>
+                        <span><input type="radio"  name="sex" value="1" />&nbsp;男生</span>
+                        <span style="margin-left: 15px;">
+                            <input type="radio" name="sex" value="2" />&nbsp;女生
+                        </span>
+                        <span style="margin-left: 15px;">
+                            <input type="radio" checked="checked" name="sex" value="0" />&nbsp;秘密
+                        </span>
+                    </span>
+                </section>
+                <section style="margin-top: 10px;">
+                    <span>单身中：</span>
+                    <span>
+                        <span><input type="radio"  name="love" value="1" />&nbsp;YES</span>
+                        <span style="margin-left: 18px;">
+                            <input type="radio" name="love" value="2" />&nbsp;NO
+                        </span>
+                        <span style="margin-left: 24px;">
+                            <input type="radio" checked="checked" name="love" value="0" />&nbsp;秘密
+                        </span>
+                    </span>
+                </section>
+            </div>
+
+            <hr >
+
+            <div class="subTitle_div" style="margin-top: 10px;">
+                <div >
+                    <!-- ngInclude: (page.templateId) | templateIdToPath: templatePath -->
+                    <div >
+                        <fieldset class="subTitle_fieldset" style="">
+                            <section class="subTitle_frame" style="" >
+                                <section  class="subTitle_content" style="">
+                                    <section>开始摇号：</section>
+                                </section><section class="subTitle_targe" style="" >
+
+                            </section>
+                            </section>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="raffled" id="easing">
+                <img class="main_bg" src="../static/images/main_bg.png">
+
+                <div class="num_div" id="num_div">
+
+                     <div class="num" id="num1" ></div>
+                    <div class="num" id="num2" ></div>
+                    <div class="num" id="num3" ></div>
+                </div>
+                <div  class="mask_div" id="mask_div">
+                    <img class="num_mask" src="../static/images/num_mask.png">
+                </div>
+                <div class="btn_div" id="btn_div">
+                    <img class="btn_start" id="btn_start" src="../static/images/btn_start.png">
+                </div>
+            </div>
+
+            <hr>
+
+            <div style="margin-top: 50px">
+                <center>
+                    <section>
+                        @copyright 暨友园
+                    </section>
+                </center>
+            </div>
+
+        </section>
+   </section>
+</div>
+
+<section class="tn-scripts">
+    <script type="text/javascript" src="../static/js/jquery-1.7.2-min.js"></script>
+    <script type="text/javascript" src="../static/js/easing.js"></script>
+    <script type="text/javascript" src="../static/js/520.js"></script>
+    <script type="text/javascript" src="../static/js/jquery.cookie.js"></script>
+</section>
+
+
+
+
+</body></html>

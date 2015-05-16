@@ -1,0 +1,6 @@
+http://www.yjmade.net/2013/excute_manage_py_in_sae/
+
+http://www.yjmade.net/2013/excute_manage_py_in_sae/
+
+from django.core.management import execute_from_command_line
+execute_from_command_line(["","syncdb"])

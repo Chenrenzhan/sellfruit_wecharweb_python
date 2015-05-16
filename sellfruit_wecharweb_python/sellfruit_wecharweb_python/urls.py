@@ -10,6 +10,8 @@ from sellfruit.queryorder import queryorder
 
 from canteen_menu.views import canteenmenu
 
+from activity.views import wuerling,wuerling_action
+
 urlpatterns = [
     # Examples:
     # url(r'^$', 'sellfruit_wecharweb_python.views.home', name='home'),
@@ -25,4 +27,8 @@ urlpatterns = [
 
     #canteen_menu食堂菜单
     url(r'^canteenmenu/$', canteenmenu),
+
+    #activity活动app
+    url(r'^wuerling/$', wuerling),
+    url(r'^wuerlingaction/$',wuerling_action)
 ]

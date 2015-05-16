@@ -41,6 +41,7 @@ INSTALLED_APPS = (
      'django.contrib.staticfiles',
      'sellfruit',
     'canteen_menu',
+    'activity',
 )
 
 MIDDLEWARE_CLASSES = (

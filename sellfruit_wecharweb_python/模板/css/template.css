@@ -1,0 +1,161 @@
+
+body{font:14px "Lucida Grande","Helvetica Neue",Helvetica,"Microsoft YaHei",Arial,sans-serif}
+body:not([class]){padding:50px}
+body:not([class]) a{color:#00b7ff}
+
+
+
+.container-full-fill{position:absolute;margin:0;padding:0;border:0;border-spacing:0;left:0;top:0;right:0;bottom:0;overflow:hidden;width:auto}
+.container-full-width{margin:0 auto;width:100%}
+
+
+
+
+body{color:#34363c}
+
+.full-height-box{position:absolute;margin:0;padding:0;border:0;border-spacing:0;left:0;top:0;right:0;bottom:0;min-height:100%}
+.full-height-box>.inner{position:relative;min-height:100%}
+
+::-moz-selection{color:#fff;background-color:rgba(201,94,87,.6)}
+::selection{color:#fff;background-color:rgba(201,94,87,.6)}
+
+.board-body{background-color:#fff}
+
+
+
+.tn-article-section{
+    padding:0 25px 10px;
+    margin-top:0;
+    margin-bottom:0;
+    margin-left: 0px;
+    background-color:#fff;
+    -webkit-box-shadow:0 2px 4px #6c6d6f;
+    -moz-box-shadow:0 2px 4px #6c6d6f;
+    box-shadow:0 2px 4px #6c6d6f
+}
+
+
+
+@media (min-width:768px){
+    .container{width:750px!important}
+
+    .tn-article-section{padding:0 35px 10px;margin-top:10px;margin-bottom:10px;margin-left: auto;}
+}
+
+
+img .title_image{
+     box-sizing: border-box;
+    width: 100%;
+    height: auto !important;
+    text-align: start;
+    border: 0.3em solid white;
+    -webkit-box-shadow: 0.2em 0.2em 0.5em #666;
+    -moz-box-shadow: 0.2em 0.2em 0.5em #666;
+    box-shadow: 0.2em 0.2em 0.5em #666
+}
+
+
+fieldset .subTitle_fieldset{
+    border:0;text-align: left;
+    margin: 0.8em 0 0.5em 0;
+    white-space: nowrap;
+    overflow: hidden;
+    box-sizing: border-box!important
+}
+section .subTitle_frame{
+    display: inline-block;
+    font-size: 1em;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: inherit;
+    text-align: inherit;
+    text-decoration: inherit;
+    color: white;
+    background-color: transparent;
+    border-color: rgb(249, 110, 87);
+}
+
+section .subTitle_content{
+    height: 2em;
+    display: inline-block;
+    padding: 0.3em 0.5em;
+    color: white;
+    text-align: center;
+    font-size: 1em;
+    line-height: 1.4;
+    vertical-align: top;
+    box-sizing: border-box ! important;
+    font-family: inherit;
+    font-style: normal;
+    background-color: rgb(249, 110, 87);
+}
+
+section .subTitle_targe{
+    box-sizing: border-box ! important;
+    display: inline-block; height: 2em; width: 0.5em;
+    vertical-align: top; border-left: 0.5em solid rgb(249, 110, 87);
+    border-top-width: 1em ! important; border-top-style: solid ! important;
+    border-color: rgb(249, 110, 87);
+    border-bottom-width: 1em ! important;
+    border-bottom-style: solid ! important;
+    -moz-border-top-colors: transparent ! important;
+    -moz-border-bottom-colors: transparent ! important;
+    font-size: 1em;
+}
+
+section .content{
+    font-size: 100%;
+    font-family: inherit;
+    font-style: normal;
+    font-weight: inherit;
+    text-align: inherit;
+    text-decoration: inherit; color: rgb(51, 51, 51);
+    background-color: transparent;
+    border-color: rgb(249, 110, 87);
+}
+section .content_details{
+    margin: -13px 3px;
+    padding: 12px;
+    border: 1px solid rgb(249, 110, 87);
+    border-radius: 6px;
+    line-height: 1.4;
+    word-break: break-all;
+    word-wrap: break-word;
+    box-sizing: border-box;
+    font-family: inherit;
+    font-style: normal;
+    color: rgb(51, 51, 51);
+}
+section .angle {
+    height: 16px;
+    box-sizing: border-box;
+}
+section .angle_top_left{
+    height: 100%; width: 24px; float: left;
+    border-top: 6px solid rgb(249, 110, 87);
+    border-left: 6px solid rgb(249, 110, 87);
+    border-color: rgb(249, 110, 87);
+}
+section .angle_top_rigth{
+    height: 100%; width: 24px; float: right;
+    border-top: 6px solid rgb(249, 110, 87);
+    border-right: 6px solid rgb(249, 110, 87);
+    border-color: rgb(249, 110, 87);
+}
+section .angle_bottom_left{
+    height: 100%; width: 24px; float: left;
+    border-bottom: 6px solid rgb(249, 110, 87);
+    border-left: 6px solid rgb(249, 110, 87);
+    border-color: rgb(249, 110, 87);
+}
+section .angle_bottom_right{
+    height: 100%; width: 24px; float: right;
+    border-bottom: 6px solid rgb(249, 110, 87);
+    border-right: 6px solid rgb(249, 110, 87);
+    border-color: rgb(249, 110, 87);
+}
+section .angle_line{
+    display: inline-block;
+    color: transparent;
+    clear: both;
+}

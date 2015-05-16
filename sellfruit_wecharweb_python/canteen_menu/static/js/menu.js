@@ -78,7 +78,7 @@ alert(id1);
     //var sTop = $(window).scrollTop();
     //if(sTop > 130){
     //    obj.slideDown();
-    }
+    //}
 }
 
 //ajax通讯，必须在HTML界面某个地方加入<form>{% csrf_token %}</from>
