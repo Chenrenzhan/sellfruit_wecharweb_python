@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="微信">
+
+<!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+            
+<!-- Mobile Devices Support @end -->
+
+        {% load staticfiles %}
+		<link rel="stylesheet" href="{% static "css/order.css"%}" >
+
+	
+		<title>订单</title>
+		
+	</head>
+	
+	<body>
+	
+		<div class="header">
+			<h3>订单编号 <span id="orderId">{{ fruits.orderNo }}</span></h3>
+		</div>
+
+        <form name="orderForm" action="" method="get" onSubmit="return check();">
+		<div class="body" style="margin-bottom:90px;">
+            {% for fruit in fruits.fruits %}
+                {% if fruit.sum != 0 %}
+                <div class="itemDiv">
+                    <div class="item">
+                        <span class="fruitName">{{ fruit.name }}</span>
+                        <span class="sum" id="appleSum">{{ fruit.sum }}
+                            {% if fruit.measurement %}个
+                            {% else %}斤
+                            {% endif %}
+                        </span>
+				    </div>
+                </div>
+                {% endif %}
+            {% endfor %}
+			 
+			 <div>
+
+					<div class="delivery" id="33">
+						<div class="delWay">
+							<input type="radio" id="self" name="del"checked="checked" value="True"/>自提
+						</div>
+						<div class="delAddr">
+							<span class="delSpan">
+								请于**月**日12:00-13:00到快递服务中心自提
+							</span>
+						</div>
+					</div>
+					<div class="delivery" style="clear:both;border-top:10px;" >
+						<div class="delWay">
+							<input type="radio" name="del" id="sendToDorm" value="False"/>送到宿舍
+						</div>
+						<div class="delAddr" >
+							<span class="delSpan">
+								预计**月**日13:00-13:30送达宿舍(2元运费)
+							</span>
+						</div>
+						<div class="dormNo" id="dorm" style="visibility: hidden;">
+							<p class="inputP">宿舍号：<input type="number" name="dorm" class="inputText" id="dormNo" /> </p>
+						</div>
+					</div>
+
+			 </div>	
+
+			<div class="telephone">
+				<p class="inputP">长(短)号：<input type="tel" name="phone" class="inputText" id="telephone" /> </p>
+			</div>
+			<hr color="black">
+			<center>
+			<div class="btnDiv" >
+				<input type="submit" name="submit" value="确定" class="btn" id="ok"/>
+				<input type="reset" name="submit" value="取消" class="btn" id="cancel" onclick="javascript:history.back(-1);"/>
+			</div>
+			</center>
+
+            <br />
+            <div>
+                <span>在"暨友园"公众号发"取消+电话号码"可取消订单，如"取消13800138000"</span>
+            </div>
+
+
+		</div>
+		</form>
+    <script type="text/javascript">
+        document.getElementById("telephone").onchange = function(e)
+        {
+            if(document.getElementById("telephone").value == "")
+                alert("亲，您还没写电话呢！");
+            else if((document.getElementById("telephone").value.length != 11) &&
+                     (document.getElementById("telephone").value.length != 6) )
+                alert("亲，电话不对哦！")
+        }
+
+        function check()
+        {
+
+            var radio = document.getElementsByName("del");
+            if(radio[1].checked)
+            {
+                var dorm = document.getElementById("dormNo");
+                if(dorm.value.length != 4) {
+                    alert("请输入正确的宿舍号！");
+                    return false;
+                }
+
+            }
+            if(document.getElementById("telephone").value == "") {
+                alert("亲，您还没写电话呢！");
+                return false;
+            }
+            else if((document.getElementById("telephone").value.length != 11) &&
+                    (document.getElementById("telephone").value.length != 6) )
+            {
+                alert("亲，电话不对哦！");
+                return false;
+            }
+            else {
+                var radioDorm = document.getElementById("sendToDorm");
+                var radioSelf = document.getElementById("self");
+                var str="";
+                if(radioSelf.checked){
+                    str = document.getElementsByClassName("delSpan")[0].innerHTML;
+                }
+                else{
+                    str = document.getElementsByClassName("delSpan")[1].innerHTML;
+                }
+                alert("      水果订购成功！\r\n"+str);
+                return true;
+            }
+
+
+        }
+
+        window.onload = function()
+        {
+            var date = new Date();
+            var month = date.getMonth();
+            var day = date.getDate();
+            var hours = date.getHours();
+            var week = date.getDay();
+            month = month + 1;//因为月份是从0开始的
+            switch(week)
+            {
+                case 0:
+                    day += 1;
+                    setdate(month, day);
+                    break;
+                case 1:
+                    if(hours < 12)
+                    {
+                        setdate(month, day);
+                    }
+                    else
+                    {
+                        day += 2;
+                        setdate(month, day);
+                    }
+                    break;
+                case 2:
+                    day += 1;
+                    setdate(month, day);
+                    break;
+                case 3:
+                    if(hours < 12)
+                    {
+                        setdate(month, day);
+                    }
+                    else
+                    {
+                        day += 2;
+                        setdate(month, day);
+                    }
+                    break;
+                case 4:
+                    day += 1;
+                    setdate(month, day);
+                    break;
+                case 5:
+                    if(hours < 12)
+                    {
+                        setdate(month, day);
+                    }
+                    else
+                    {
+                        day += 3;
+                        setdate(month, day);
+                    }
+                    break;
+                case 6:
+                    day += 2;
+                    setdate(month, day);
+                    break;
+
+
+            }
+
+            function setdate(month, day)
+            {
+                document.getElementsByClassName("delSpan")[0].innerHTML = "请于" + month + "月" + day + "日12:00-13:00到快递服务中心自提";
+                document.getElementsByClassName("delSpan")[1].innerHTML = "预计" + month + "月" + day + "日13:00-13:30送达宿舍(2元运费)";
+            }
+
+            var radioDorm = document.getElementById("sendToDorm");
+            var radioSelf = document.getElementById("self");
+            var divDorm = document.getElementById("dorm");
+            radioDorm.onchange = function(e){
+                divDorm.style.visibility = "visible";
+            }
+            radioSelf.onchange = function(e) {
+                divDorm.style.visibility = "hidden";
+            }
+
+        }
+
+
+
+
+
+    </script>
+
+	</body>
+</html>
+	

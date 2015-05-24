@@ -86,7 +86,11 @@ $(function(){
     $('.btn_start').click(function(){
 
         var phoneNo = $("#phone").val();
-        if(phoneNo.length != 6 && phoneNo.length != 11){
+        if(phoneNo.length == 6  ){
+            alert("亲，要填长号哦！");
+            return false;
+        }
+        else if(phoneNo.length != 11){
             alert("为了确保您中奖后领奖\r\n请正确填写手机号码");
             return false;
         }
@@ -103,9 +107,13 @@ $(function(){
 $(function(){
     $("#phone").change(function(){
          var phoneNo = $(this).val();
-         if(phoneNo.length != 6 && phoneNo.length != 11){
+        if(phoneNo.length == 6  ){
+            alert("亲，要填长号哦！");
+        }
+        else if(phoneNo.length != 11){
             alert("为了确保您中奖后领奖\r\n请正确填写手机号码");
         }
+
     });
 });
 

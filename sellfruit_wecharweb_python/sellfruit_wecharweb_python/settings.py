@@ -42,6 +42,7 @@ INSTALLED_APPS = (
      'sellfruit',
     'canteen_menu',
     'activity',
+    'graduate_flower'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -95,6 +96,9 @@ USE_TZ = False
 
 STATIC_URL = '/static/'
 
+# STATICFILES_DIRS = (
+#     os.path.join(BASE_DIR, 'graduate_flower/static').replace('\\','/'),
+# )
 
 #加载模板
 TEMPLATE_LOADERS = (

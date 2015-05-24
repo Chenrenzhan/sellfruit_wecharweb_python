@@ -43,13 +43,13 @@ def index(request):
         request.session['fruits'] = fruitSum #把选购水果的数量存到session
         #return HttpResponse(fruits['fruits'][0]['name'])
         return HttpResponseRedirect('/order/')
-        # return render_to_response('order.html', {'fruitslist':request.GET.getlist('fruitSum')})
+        # return render_to_response('flower_order.html', {'fruitslist':request.GET.getlist('fruitSum')})
         # HttpResponse(request.GET.getlist('fruitSum')[0])
     # else:
     #    return HttpResponse
         #return HttpResponse(message)
 
-
+    print(validate)
     return render_to_response('index.html', validate)
 
 def order(request):

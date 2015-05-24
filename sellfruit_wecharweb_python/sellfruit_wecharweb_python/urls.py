@@ -12,6 +12,8 @@ from canteen_menu.views import canteenmenu
 
 from activity.views import wuerling,wuerling_action
 
+from graduate_flower.views import graduate_flower, graduate_flower_action
+
 urlpatterns = [
     # Examples:
     # url(r'^$', 'sellfruit_wecharweb_python.views.home', name='home'),
@@ -30,5 +32,10 @@ urlpatterns = [
 
     #activity活动app
     url(r'^wuerling/$', wuerling),
-    url(r'^wuerlingaction/$',wuerling_action)
+    url(r'^wuerlingaction/$',wuerling_action),
+
+    #毕业季买花
+    url(r'^graduate/flower/$', graduate_flower),
+    url(r'^graduate/flower/action/$', graduate_flower_action),
+
 ]

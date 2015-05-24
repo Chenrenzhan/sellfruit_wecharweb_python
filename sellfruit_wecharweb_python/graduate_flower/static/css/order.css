@@ -1,0 +1,74 @@
+			html, body{
+				width:100%;
+				margin: 0;
+				padding: 0;
+				border: 0;
+				font-size: 100%;
+				font: inherit;
+				vertical-align: baseline;
+				background:RGB(200,204,255);
+				//text-align:center;
+				//padding-left:10px;
+			}
+			
+			.header h3{
+				text-align:left;
+				padding-left:10px;
+			}
+			
+			
+			div.item{
+				border-top:1px solid gray;
+				border-bottom:1px solid gray;
+				padding:5px;
+				padding-left:10px;
+				//padding-bottom:10px;
+				margin-bottom:5px;
+			}
+			
+			span.sum{
+				float:right;
+				padding-right:30px;
+			}
+			
+			div.delWay{
+				width:20%;
+				float:left;
+				min-width:25px;
+				padding:5px;
+			}
+			
+			div.delAddr{
+				width:80%;
+				//float:left;
+				padding:5px;
+			}
+			
+			div.delivery{
+				//border:1px solid black;
+				border-bottom:1px solid black;
+				border-top:1px solid black;
+			}
+			
+			span.delSpan{
+				//padding-left:50px;
+			}
+			
+			.inputP{
+				padding-left:10px;
+			}
+			.telephone{
+				border-bottom:1px;
+			}
+			
+			.btnDiv{
+				border-top:1px;
+				margin-left: auto;
+				margin-right: auto;
+				align:center;
+			}
+			.btn{
+				margin:auto;
+				width:40%;
+				font-size:20px;
+			}

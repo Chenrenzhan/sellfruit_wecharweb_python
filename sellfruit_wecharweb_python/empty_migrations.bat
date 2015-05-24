@@ -1,0 +1,1 @@
+manage.py makegrations --empty app_name
