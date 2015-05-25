@@ -97,3 +97,35 @@ def graduate_flower_action(request):
     variable = {'statu': statu}
 
     return HttpResponse(json.dumps(variable))
+
+
+def order_view(request):
+
+    variable = None
+    date_str = [u'26号', u'29号', u'30号']
+    try:
+        order_list = FloweraOrder.objects.all()
+        print(order_list)
+        orders = []
+        for order in order_list:
+            try:
+                order_flower_list = Order_Flower.objects.filter(flower_order = order)
+                print(order_flower_list)
+                flower_list = []
+                for order_flower in order_flower_list:
+                    flower = order_flower.flower
+                    take_date = int(order_flower.take_time)
+
+                    flower_list.append({'flower': flower, 'date': date_str[take_date]})
+                order.gtime = datetime.datetime.strftime(order.gtime, '%Y-%m-%d %H:%M:%S')
+                orders.append({'order': order, 'flowers': flower_list})
+            except Exception as e:
+
+                print(e)
+        print(orders)
+    except Exception as e:
+
+        print(e)
+    variable = {'orders' : orders}
+    print(variable)
+    return  render_to_response('order_view.html',variable, context_instance=RequestContext(request))

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta name="description" content="微信">
+
+<!-- Mobile Devices Support @begin -->
+        <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
+		<meta content="no-cache,must-revalidate" http-equiv="Cache-Control">
+		<meta content="no-cache" http-equiv="pragma">
+		<meta content="0" http-equiv="expires">
+		<meta content="telephone=no, address=no" name="format-detection">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height">
+		<meta name="apple-mobile-web-app-capable" content="yes"> <!-- apple devices fullscreen -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+            
+<!-- Mobile Devices Support @end -->
+
+        <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.4/css/bootstrap.min.css">
+
+	
+		<title>订花订单</title>
+		
+	</head>
+	
+	<body>
+	<center>
+	    <div class="container">
+            <div class="page-header">
+              <h2 style=""> 订花订单</h2>
+            </div>
+            <hr>
+
+            {% for order in orders %}
+                <div class="panel panel-info" style="text-align: left">
+                  <div class="panel-body">
+                    <div>订单: {{ order.order.id }}</div>
+                    <div>总额: {{ order.order.totalamount }}元</div>
+                    <div>电话: {{ order.order.phone }}</div>
+                    <div style="margin-left: 10px;color: #009900; margin-top: 5px; ">
+                        {% for flower in order.flowers %}
+                            <p>
+                                <span style="padding-right: 20px;">{{ flower.flower.flower_name }}</span>
+                                <span style="padding-right: 20px;">{{ flower.flower.flower_price }}元/束</span>
+                                <span>{{ flower.date }}</span>
+                            </p>
+                        {% endfor %}
+                    </div>
+                    <div>留言: <span>{{ order.order.remarks }}</span></div>
+                    <div>下单时间: <span>{{ order.order.gtime }}</span></div>
+                  </div>
+                </div>
+            {% endfor %}
+
+
+        </div>
+    </center>
+
+
+
+
+<script src="http://cdn.bootcss.com/jquery/1.11.2/jquery.min.js"></script>
+<!--<script src="statics/js/bootstrap.min.js"></script>-->
+<script src="http://cdn.bootcss.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+	</body>
+</html>
+	

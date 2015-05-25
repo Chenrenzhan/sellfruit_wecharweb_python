@@ -12,7 +12,7 @@ from canteen_menu.views import canteenmenu
 
 from activity.views import wuerling,wuerling_action
 
-from graduate_flower.views import graduate_flower, graduate_flower_action
+from graduate_flower.views import graduate_flower, graduate_flower_action, order_view
 
 urlpatterns = [
     # Examples:
@@ -37,5 +37,6 @@ urlpatterns = [
     #毕业季买花
     url(r'^graduate/flower/$', graduate_flower),
     url(r'^graduate/flower/action/$', graduate_flower_action),
+    url(r'^graduate/flower/orderview/$', order_view),
 
 ]

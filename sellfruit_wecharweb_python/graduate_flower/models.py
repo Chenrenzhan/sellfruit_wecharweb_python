@@ -61,7 +61,7 @@ class Order_Flower(models.Model):
     @classmethod
     def get_flower_list(cls, order):
         try:
-            return cls.fliter(flowe_order = order)
+            return cls.objects.filter(flowe_order = order)
         except Exception as e:
             print(e)
             return None

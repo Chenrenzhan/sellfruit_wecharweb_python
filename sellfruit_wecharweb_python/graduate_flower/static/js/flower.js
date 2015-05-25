@@ -126,7 +126,7 @@ function check_phone(){
 function flower_html(flower_class, flower_id, name, price, radio_id){
     var html_str = "   <div class=\"panel panel-info flower " + flower_class  + "\" id=\"" +  flower_id + "\"> "
         +"         <div class=\"panel-heading\"> "
-        +"           <h3 class=\"panel-title\">" + name + "(" + price + "元)" + "</h3> "
+        +"           <h3 class=\"panel-title\">" + name + "(" + price + ")" + "</h3> "
         +"         </div> "
         +"         <div class=\"panel-body\"> "
         +"           <div class=\"form-group\" style=\"font-size:1.2em;\"> "

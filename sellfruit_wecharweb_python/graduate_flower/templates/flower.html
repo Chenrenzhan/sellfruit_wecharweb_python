@@ -22,6 +22,13 @@
 		<link rel="stylesheet" href="{%  static "css/index.css" %}" >
 	
 		<title>毕业季订花</title>
+
+		<style>
+		@media (min-width:600px){
+            .container{width:600px!important}
+        }
+        </style>
+
 	</head>
 	
 	<body>
@@ -29,8 +36,8 @@
 	<center>
     <div class="container">
         <div class="page-header">
-  <h2 style=""> <small>毕业季</small> 订花了</h2>
-</div>
+          <h2 style=""> <small>毕业季</small> 订花了</h2>
+        </div>
         <hr>
 	    <form active="http://127.0.0.1:8000/graduate/flower/action/" method="post" name="flower">
 	    {% csrf_token %}
@@ -118,6 +125,10 @@
 
 		</form>
 
+        <hr>
+        <div id="copyright">
+            <div class="container">&copy; 暨友园</div>
+        </div>
 
 
 
